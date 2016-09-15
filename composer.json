@@ -1,0 +1,27 @@
+{
+  "name": "Nessworthy/business-gateway",
+  "description": "A PHP SDK to work with UK Gov's land registry SOAP-based API.",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "version": "0.0.1",
+  "authors": [
+    {
+      "name": "Sean Nessworthy",
+      "email": "sean@nessworthy.me"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Nessworthy\\BusinessGateway\\": "src/Nessworthy/BusinessGateway/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nessworthy\\BusinessGateway\\Tests\\": "tests/src/Nessworthy/BusinessGateway/"
+    }
+  },
+  "require-dev": {
+    "monolog/monolog": "^1.21",
+    "wsdl2phpgenerator/wsdl2phpgenerator": "^3.3"
+  }
+}
