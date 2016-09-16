@@ -1,6 +1,5 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1Address;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**

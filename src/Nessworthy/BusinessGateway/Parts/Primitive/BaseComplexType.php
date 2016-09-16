@@ -3,7 +3,7 @@ namespace Nessworthy\BusinessGateway\Parts\Primitive;
 
 use Nessworthy\BusinessGateway\Parts\ComplexType;
 use Nessworthy\BusinessGateway\Parts\InvalidChildException;
-use Nessworthy\BusinessGateway\Parts\SimpleType;
+use Nessworthy\BusinessGateway\Parts\Type;
 use Nessworthy\BusinessGateway\Parts\ValidationRestrictionException;
 use Psr\Log\InvalidArgumentException;
 
@@ -26,68 +26,6 @@ abstract class BaseComplexType implements ComplexType
     }
 
     /**
-     * @inheritDoc
-     */
-    public function sanityCheck()
-    {
-        foreach($this->children as $key => $children) {
-            $range = $this->childrenRange[$key];
-
-            $count = 0;
-            if(!is_null($children)) {
-                $count = 1;
-            }
-            if(is_array($children)) {
-                $count = count($children);
-            }
-
-            $className = __CLASS__;
-
-            if(
-                $range['minimum'] !== self::UNBOUNDED
-                && $range['maximum'] !== self::UNBOUNDED
-                && $range['minimum'] === $range['maximum']
-                && $count !== $range['minimum']
-            ) {
-                throw new ValidationRestrictionException(sprintf(
-                    'Child key %s expects to be defined exactly %s time%s in %s, %s given.',
-                    $key,
-                    $range['minimum'],
-                    $range['minimum'] === 1 ? '' : 's',
-                    $className,
-                    $count
-                ));
-            } elseif($range['minimum'] !== self::UNBOUNDED && $range['minimum'] > $count) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Child key %s should be defined at least %s time%s in %s, %s given.',
-                    $key,
-                    $range['minimum'],
-                    $range['minimum'] === 1 ? '' : 's',
-                    $className,
-                    $count
-                ));
-            } elseif ($range['maximum'] !== self::UNBOUNDED && $range['maximum'] < $count) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Child key %s should be defined at most %s time%s in %s, %s given.',
-                    $key,
-                    $range['maximum'],
-                    $range['maximum'] === 1 ? '' : 's',
-                    $className,
-                    $count
-                ));
-            }
-
-            if(!is_array($children)) {
-                $children = array($children);
-            }
-            foreach($children as $child) {
-                $child->sanityCheck($child);
-            }
-        }
-        return true;
-    }
-
-    /**
      * Define all children this complex type contains.
      */
     abstract protected function defineChildren();
@@ -98,7 +36,7 @@ abstract class BaseComplexType implements ComplexType
      * @throws InvalidArgumentException
      * @throws InvalidChildException
      * @param string $childKey
-     * @return SimpleType|ComplexType|array|null
+     * @return Type|Type[]|null
      */
     public function getChild($childKey)
     {
@@ -128,12 +66,14 @@ abstract class BaseComplexType implements ComplexType
 
     /**
      * Set a child's value.
-     * If multiple children are allowed, will add this child to the group. If not, an exception will be thrown.
+     * The amount of children provided MUST be within range of the children's defined range.
+     * I.e. you cannot call addChild twice for the same key in order to add two children -
+     * call it once with an array instead.
      * Children must be defined using defineChild first.
-     * TODO: Allow arrays to pass through to AddChild. It's the responsibility of the extender to ensure this data is valid.
+     * TODO: Probably split this into two: addChild(Type) and addChildren(Type[])?
      * @throws \InvalidArgumentException If a non-string is used as a key, or the child was attempted to be overwritten.
      * @param string $key The key.
-     * @param SimpleType|ComplexType $value
+     * @param Type|Type[] $value
      */
     protected function addChild($key, $value)
     {
@@ -148,30 +88,42 @@ abstract class BaseComplexType implements ComplexType
             );
         }
 
+        if(!is_null($this->children[$key])) {
+            throw new \InvalidArgumentException(
+                'Tried to add a child to already set key ' . $key
+            );
+        }
+
         $range = $this->childrenRange[$key];
+        $numberOfValuesToAdd = is_array($value) ? count($value) : 1;
+
+        if($range['minimum'] !== self::UNBOUNDED) {
+            if($range['minimum'] > $numberOfValuesToAdd) {
+                throw new ValidationRestrictionException(sprintf(
+                    'Tried to set %s %s when the minimum defined amount for key %s is %s.',
+                    $numberOfValuesToAdd,
+                    $numberOfValuesToAdd === 1 ? 'child' : 'children',
+                    $key,
+                    $range['minimum']
+                ));
+            }
+        }
 
         if($range['maximum'] !== self::UNBOUNDED) {
             // Defined maximum amount!
-            if($range['maximum'] === 1 && !is_null($this->children[$key])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Tried to add child of key %s which would exceed the maximum allowed amount of %s.',
-                    $key,
-                    $range['maximum']
-                ));
-            } else if($range['maximum'] > 1 && count($this->children[$key]) >= $range['maximum']) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Tried to add child of key %s which would exceed the maximum allowed amount of %s.',
+            if($range['maximum'] < $numberOfValuesToAdd) {
+                throw new ValidationRestrictionException(sprintf(
+                    'Tried to add %s %s of when the maximum defined amount for key %s is %s.',
+                    $numberOfValuesToAdd === 1 ? 'a' : $numberOfValuesToAdd,
+                    $numberOfValuesToAdd === 1 ? 'child' : 'children',
                     $key,
                     $range['maximum']
                 ));
             }
         }
 
-        if(is_array($this->children[$key])) {
-            $this->children[$key][] = $value;
-        } else {
-            $this->children[$key] = $value;
-        }
+        $this->children[$key] = $value;
+
     }
 
     /**

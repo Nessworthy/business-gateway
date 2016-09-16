@@ -1,10 +1,12 @@
 <?php
-namespace Nessworthy\BusinessGateway\Parts\BusinessEntities;
+namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\ResponseSearchByPropertyDescriptionV2_0;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1PostcodeZone;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNameText;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNumberText;
 use Nessworthy\BusinessGateway\Parts\Content\CityText;
 use Nessworthy\BusinessGateway\Parts\Content\PostcodeText;
 use Nessworthy\BusinessGateway\Parts\Content\StreetNameText;
+use Nessworthy\BusinessGateway\Parts\Content\Text;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**
@@ -27,53 +29,69 @@ class Q1Address extends BaseComplexType
     protected function defineChildren()
     {
         $this->defineChild('BuildingName', 0, 1);
+        $this->defineChild('SubBuildingName', 0, 1);
         $this->defineChild('BuildingNumber', 0, 1);
         $this->defineChild('StreetName', 0, 1);
         $this->defineChild('CityName', 0, 1);
-        $this->defineChild('PostcodeZone', 0, 1);
+        $this->defineChild('PostcodeZone', 1, 1);
+    }
+
+    public function __construct(Q1PostcodeZone $postcodeZone)
+    {
+        parent::__construct();
+        $this->addChild('PostcodeZone', $postcodeZone);
     }
 
     /**
      * Add a building name.
-     * @param BuildingNameText $buildingName
+     * @param Text $buildingName
      */
-    public function setBuildingName(BuildingNameText $buildingName)
+    public function setBuildingName(Text $buildingName)
+    {
+        $this->addChild('BuildingName', $buildingName);
+    }
+
+    /**
+     * Add a building name.
+     * @param Text $buildingName
+     */
+    public function setSubBuildingName(Text $buildingName)
     {
         $this->addChild('BuildingName', $buildingName);
     }
 
     /**
      * Add a building number.
-     * @param BuildingNumberText $buildingNumber
+     * @param Text $buildingNumber
      */
-    public function setBuildingNumber(BuildingNumberText $buildingNumber)
+    public function setBuildingNumber(Text $buildingNumber)
     {
         $this->addChild('BuildingNumber', $buildingNumber);
     }
 
     /**
      * Add a street name.
-     * @param StreetNameText $streetName
+     * @param Text $streetName
      */
-    public function setStreetName(StreetNameText $streetName)
+    public function setStreetName(Text $streetName)
     {
         $this->addChild('StreetName', $streetName);
     }
 
     /**
      * Add a city name.
-     * @param CityText $cityName
+     * @param Text $cityName
      */
-    public function setCityName(CityText $cityName)
+    public function setCityName(Text $cityName)
     {
         $this->addChild('CityName', $cityName);
     }
 
     /**
      * Add a postcode.
-     * @param PostcodeText $postcodeZone
+     * @param Q1PostcodeZone $postcodeZone
      */
-    public function setPostcodeZone(PostcodeText $postcodeZone)
+    public function setPostcodeZone(Q1PostcodeZone $postcodeZone)
     {
         $this->addChild('PostcodeZone', $postcodeZone);
     }
