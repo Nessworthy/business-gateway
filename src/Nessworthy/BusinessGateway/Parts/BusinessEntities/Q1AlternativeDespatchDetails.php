@@ -5,6 +5,13 @@ use Nessworthy\BusinessGateway\Parts\Content\DespatchNameText;
 use Nessworthy\BusinessGateway\Parts\Content\Q4Text;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
+/**
+ * Class Q1AlternativeDespatchDetails
+ * @package Nessworthy\BusinessGateway\Parts\BusinessEntities
+ * @property null|DespatchNameText AlternativeDespatchName
+ * @property null|Q4Text AlternativeDespatchReference
+ * @property null|Q1AlternativeDespatchAddress AlternativeDespatchAddress
+ */
 class Q1AlternativeDespatchDetails extends BaseComplexType
 {
     /**

@@ -7,6 +7,8 @@ use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 /**
  * Class Q1AlternativeDespatchAddress
  * @package Nessworthy\BusinessGateway\Parts\BusinessEntities
+ * @property null|Q1AlternativePostalAddress PostalAddress
+ * @property null|Q1DXDetails DXDetails
  */
 class Q1AlternativeDespatchAddress extends BaseComplexType
 {

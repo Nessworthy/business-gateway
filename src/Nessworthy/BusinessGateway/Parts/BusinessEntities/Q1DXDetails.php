@@ -7,6 +7,8 @@ use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 /**
  * Class Q1DXDetailsType
  * @package Nessworthy\BusinessGateway\Parts\BusinessEntities
+ * @property Q3Text DXNumber
+ * @property Q3Text ExchangeName
  */
 class Q1DXDetails extends BaseComplexType
 {

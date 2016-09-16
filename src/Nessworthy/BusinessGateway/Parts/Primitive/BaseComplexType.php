@@ -9,6 +9,9 @@ use Psr\Log\InvalidArgumentException;
 
 abstract class BaseComplexType implements ComplexType
 {
+    /**
+     * Use me when you want to define no upper or lower limit for defining children.
+     */
     const UNBOUNDED = '*';
 
     private $children = array();
@@ -127,6 +130,7 @@ abstract class BaseComplexType implements ComplexType
      * Set a child's value.
      * If multiple children are allowed, will add this child to the group. If not, an exception will be thrown.
      * Children must be defined using defineChild first.
+     * TODO: Allow arrays to pass through to AddChild. It's the responsibility of the extender to ensure this data is valid.
      * @throws \InvalidArgumentException If a non-string is used as a key, or the child was attempted to be overwritten.
      * @param string $key The key.
      * @param SimpleType|ComplexType $value
@@ -138,7 +142,10 @@ abstract class BaseComplexType implements ComplexType
         }
 
         if(!array_key_exists($key, $this->children)) {
-            throw new \InvalidArgumentException('Tried to add a child to undefined key ' . $key . '.');
+            throw new \InvalidArgumentException(
+                'Tried to add a child to undefined key ' . $key . '.
+                If this is coming from a constructor, please ensure that parent::__construct() is called first.'
+            );
         }
 
         $range = $this->childrenRange[$key];

@@ -3,7 +3,6 @@ namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPrope
 
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CustomerReference;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1ExternalReference;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1SubjectProperty;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**
