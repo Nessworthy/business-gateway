@@ -9,7 +9,9 @@ use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 /**
  * Class Q1AcknowledgementDetails
  * @package Nessworthy\BusinessGateway\Parts\BusinessEntities
- * TODO: Properties, other documentation.
+ * @property Identifier UniqueID
+ * @property DateTime ExpectedResponseDateTime
+ * @property Text MessageDescription
  */
 class Q1AcknowledgementDetails extends BaseComplexType
 {

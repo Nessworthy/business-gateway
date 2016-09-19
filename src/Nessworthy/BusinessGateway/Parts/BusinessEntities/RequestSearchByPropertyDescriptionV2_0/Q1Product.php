@@ -20,6 +20,11 @@ class Q1Product extends BaseComplexType
      */
     protected function defineChildren()
     {
+        /**
+         * Define which children this class contains.
+         * Calling addChild using an undefined key will throw an exception.
+         * (This is so "optional" keys are still defined, just as empty values)
+         */
         $this->defineChild('ExternalReference', 1, 1);
         $this->defineChild('CustomerReference', 1, 1);
         $this->defineChild('SubjectProperty', 1, 1);

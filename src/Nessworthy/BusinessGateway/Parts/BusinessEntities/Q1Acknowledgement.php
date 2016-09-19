@@ -6,7 +6,7 @@ use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 /**
  * Class Q1Acknowledgement
  * @package Nessworthy\BusinessGateway\Parts\BusinessEntities
- * TODO: Properties / other docs.
+ * @property Q1AcknowledgementDetails AcknowledgementDetails
  */
 class Q1Acknowledgement extends BaseComplexType
 {
@@ -18,6 +18,10 @@ class Q1Acknowledgement extends BaseComplexType
         $this->defineChild('AcknowledgementDetails', 1, 1);
     }
 
+    /**
+     * Q1Acknowledgement constructor.
+     * @param Q1AcknowledgementDetails $acknowledgementDetails
+     */
     public function __construct(Q1AcknowledgementDetails $acknowledgementDetails)
     {
         parent::__construct();

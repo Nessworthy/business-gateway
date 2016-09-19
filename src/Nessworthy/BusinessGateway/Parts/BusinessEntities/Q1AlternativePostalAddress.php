@@ -23,9 +23,9 @@ class Q1AlternativePostalAddress extends BaseComplexType
     }
 
     /**
-     * @param Q3Text $addressLine
+     * @param Q3Text[] $addressLine
      */
-    public function setAddressLine(Q3Text $addressLine)
+    public function setAddressLine(array $addressLine)
     {
         $this->addChild('AddressLine', $addressLine);
     }

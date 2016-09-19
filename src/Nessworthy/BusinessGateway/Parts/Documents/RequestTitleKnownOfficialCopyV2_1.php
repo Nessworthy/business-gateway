@@ -1,9 +1,16 @@
 <?php
-namespace Nessworthy\BusinessGateway\Parts\BusinessEntities;
+namespace Nessworthy\BusinessGateway\Parts\Documents;
 
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1Product;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1Identifier;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1Product;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
+/**
+ * Class RequestTitleKnownOfficialCopyV2_1
+ * @package Nessworthy\BusinessGateway\Parts\Documents
+ * @property Q1Identifier ID
+ * @property Q1Product Product
+ */
 class RequestTitleKnownOfficialCopyV2_1 extends BaseComplexType
 {
     /**

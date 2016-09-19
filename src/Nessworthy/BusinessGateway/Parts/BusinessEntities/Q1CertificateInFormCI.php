@@ -20,9 +20,9 @@ class Q1CertificateInFormCI extends BaseComplexType
     }
 
     /**
-     * @param NumericType $estatePlanPlotNumberNumeric
+     * @param NumericType[] $estatePlanPlotNumberNumeric
      */
-    public function setEstatePlanPlotNumberNumeric(NumericType $estatePlanPlotNumberNumeric)
+    public function setEstatePlanPlotNumberNumeric(array $estatePlanPlotNumberNumeric)
     {
         $this->addChild('EstatePlanPlotNumberNumeric', $estatePlanPlotNumberNumeric);
     }
