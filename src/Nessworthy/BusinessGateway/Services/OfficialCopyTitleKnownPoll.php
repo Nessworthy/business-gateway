@@ -8,7 +8,7 @@ class OfficialCopyTitleKnownPoll extends BasePollRequestWebService
      */
     protected function getServiceName()
     {
-        return 'EnquiryByPropertyDescription';
+        return 'OfficialCopyTitleKnown';
     }
 
     /**
