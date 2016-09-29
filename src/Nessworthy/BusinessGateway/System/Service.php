@@ -20,4 +20,10 @@ interface Service
      * @return string
      */
     public function getVersion();
+
+    /**
+     * Retrieve the top-level namespace for this request.
+     * @return mixed
+     */
+    public function getNamespace();
 }

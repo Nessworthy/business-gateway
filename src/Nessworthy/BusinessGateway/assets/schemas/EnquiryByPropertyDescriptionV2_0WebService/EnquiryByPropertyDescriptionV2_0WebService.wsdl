@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions name="EnquiryByPropertyDescriptionV2_0WebService" targetNamespace="http://epdv2_0.ws.bg.lr.gov/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://epdv2_0.ws.bg.lr.gov/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://epdv2_0.ws.bg.lr.gov/" xmlns:ns1="http://www.oscre.org/ns/eReg-Final/2011/RequestSearchByPropertyDescriptionV2_0" xmlns:ns2="http://www.oscre.org/ns/eReg-Final/2011/ResponseSearchByPropertyDescriptionV2_0" xmlns:ns3="http://epdv2_0.ws.bg.lr.gov/">
+            <xsd:import namespace="http://www.oscre.org/ns/eReg-Final/2011/RequestSearchByPropertyDescriptionV2_0" schemaLocation="RequestSearchByPropertyDescriptionV2_0.xsd"/>
+            <xsd:import namespace="http://www.oscre.org/ns/eReg-Final/2011/ResponseSearchByPropertyDescriptionV2_0" schemaLocation="ResponseSearchByPropertyDescriptionV2_0.xsd"/>
+            <xsd:element name="SOAPEngineSystemException" nillable="true" type="xsd:string"/>
+            <xsd:element name="searchProperties" type="ns3:searchProperties"/>
+            <xsd:element name="searchPropertiesResponse" type="ns3:searchPropertiesResponse"/>
+            <xsd:complexType name="searchProperties">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="arg0" type="ns1:RequestSearchByPropertyDescriptionV2_0Type"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="searchPropertiesResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="return" type="ns2:ResponseSearchByPropertyDescriptionV2_0Type"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+    <message name="SOAPEngineSystemException">
+        <part name="fault" element="tns:SOAPEngineSystemException">
+        </part>
+    </message>
+    <message name="propertyDescriptionResponse">
+        <part name="parameters" element="tns:searchPropertiesResponse">
+        </part>
+    </message>
+    <message name="propertyDescriptionRequest">
+        <part name="parameters" element="tns:searchProperties">
+        </part>
+    </message>
+    <portType name="PropertyDescriptionEnquiryV2_0Service">
+        <operation name="searchProperties">
+            <input message="tns:propertyDescriptionRequest">
+            </input>
+            <output message="tns:propertyDescriptionResponse">
+            </output>
+            <fault name="SOAPEngineSystemException" message="tns:SOAPEngineSystemException">
+            </fault>
+        </operation>
+    </portType>
+    <binding name="PropertyDescriptionEnquiryV2_0WSImplPortBinding" type="tns:PropertyDescriptionEnquiryV2_0Service">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="searchProperties">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="SOAPEngineSystemException">
+                <soap:fault name="SOAPEngineSystemException" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="EnquiryByPropertyDescriptionV2_0WebService">
+        <port name="PropertyDescriptionV2_0WSImplPort" binding="tns:PropertyDescriptionEnquiryV2_0WSImplPortBinding">
+            <soap:address location="https://z0.b2b.http.server.landregistry.gov:13007/ECBG_StubService/EnquiryByPropertyDescriptionV2_0WebService"/>
+        </port>
+    </service>
+</definitions>

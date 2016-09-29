@@ -27,12 +27,20 @@ use Nessworthy\BusinessGateway\Parts\Content\Q1Text;
 use Nessworthy\BusinessGateway\Parts\Content\Q2Text;
 use Nessworthy\BusinessGateway\Parts\Content\Q3Text;
 use Nessworthy\BusinessGateway\Parts\Content\Q4Text;
+use Nessworthy\BusinessGateway\Parts\Content\ReferenceText;
 use Nessworthy\BusinessGateway\Parts\Content\RequestedOfficialCopyCode;
 use Nessworthy\BusinessGateway\Parts\Content\TenureCode;
 use Nessworthy\BusinessGateway\Parts\Content\TypeOfDocumentCode;
 use Nessworthy\BusinessGateway\Parts\Documents\RequestTitleKnownOfficialCopyV2_1;
 use Nessworthy\BusinessGateway\System\Builder;
 
+/**
+ * Class OfficialCopyTitleKnown
+ * Build an official copy title known request for the land registry API.
+ * Used to fetch information regarding a property based on a title ID.
+ * Use EnquiryByPropertyDescription first to acquire a title ID based on a property address.
+ * @package Nessworthy\BusinessGateway\Builders
+ */
 class OfficialCopyTitleKnown implements Builder
 {
     private $messageId;
@@ -49,13 +57,25 @@ class OfficialCopyTitleKnown implements Builder
     private $alternativeDespatchReference;
     private $alternativeDespatchAddress;
 
-
+    /**
+     * Set a unique message ID for this request.
+     * This is used to refer to a specific request for debugging, and needed for using the polling service.
+     * @param string $messageId A unique alphanumeric message ID between 5 and 50 characters; dashes are allowed.
+     */
     public function setMessageId($messageId)
     {
         $messageId = new Q1Text($messageId);
         $this->messageId = $messageId;
     }
 
+    /**
+     * Add a document request from the Land Registry for this request.
+     * @see TypeOfDocumentCode For type of document codes.
+     * @param string $typeOfDocument
+     * @param null|string $dateOfDocument
+     * @param null|string $titleNumberFiledUnder
+     * @param null|string $additionalInformation
+     */
     public function addDocumentDetails(
         $typeOfDocument,
         $dateOfDocument = null,
@@ -81,6 +101,13 @@ class OfficialCopyTitleKnown implements Builder
         $this->documentDetails[] = $document;
     }
 
+    /**
+     * Set an external reference ID for this request.
+     * This reference number should be your own system's reference ID for this request.
+     * @param string $reference A unique reference identifier, between 1 and 25 characters.
+     * @param null|string $allocatedBy Currently unused. Who this reference was allocated by.
+     * @param null|string $description Currently unused. An optional description about this reference.
+     */
     public function setExternalReference($reference, $allocatedBy = null, $description = null)
     {
         $externalReference = new Q1ExternalReference(new ReferenceText($reference));

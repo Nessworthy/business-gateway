@@ -16,7 +16,7 @@ class EnquiryByPropertyDescription extends BaseWebService
      */
     public function getRequestName()
     {
-        return 'RequestSearchByPropertyDescriptionV2_0';
+        return 'searchProperties';
     }
 
     /**
@@ -26,4 +26,14 @@ class EnquiryByPropertyDescription extends BaseWebService
     {
         return '2.0';
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getNamespace()
+    {
+        return 'http://www.oscre.org/ns/eReg-Final/2011/RequestSearchByPropertyDescriptionV2_0';
+    }
+
+
 }

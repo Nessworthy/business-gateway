@@ -8,7 +8,7 @@ class File implements Cert
     private $location;
     private $passphrase;
 
-    public function __construct($location, $passphrase = '') {
+    public function __construct($location, $passphrase = null) {
         if(!file_exists($location)) {
             throw new \InvalidArgumentException('Could not locate the certificate file at ' . $location);
         }
