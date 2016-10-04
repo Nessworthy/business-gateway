@@ -107,21 +107,21 @@ class EnquiryByPropertyDescription implements Builder
         $postcodeZone = null
     ) {
         $address = new Q1Address();
-        if(is_string($buildingName)) {
+        if(is_scalar($buildingName)) {
             $address->setBuildingName(new BuildingNameText($buildingName));
         }
-        if(is_string($buildingNumber))
+        if(is_scalar($buildingNumber))
         {
             $address->setBuildingNumber(new BuildingNumberText($buildingNumber));
         }
-        if(is_string($streetName))
+        if(is_scalar($streetName))
         {
             $address->setStreetName(new StreetNameText($streetName));
         }
-        if(is_string($cityName)) {
+        if(is_scalar($cityName)) {
             $address->setCityName(new CityText($cityName));
         }
-        if(is_string($postcodeZone)) {
+        if(is_scalar($postcodeZone)) {
             $address->setPostcodeZone(new PostcodeText($postcodeZone));
         }
         $this->address = $address;
