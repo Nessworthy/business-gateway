@@ -2,7 +2,7 @@
 namespace Nessworthy\BusinessGateway\Parts\Documents;
 
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1Identifier;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1Product;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1Product;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**

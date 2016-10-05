@@ -9,14 +9,14 @@ class DecimalTypeTest extends \PHPUnit_Framework_TestCase
     {
         $decimal = 10.501253;
         $object = new DecimalType($decimal);
-        $this->assertSame($decimal, $object->get_());
+        $this->assertSame($decimal, $object->getValue());
     }
 
     public function testDecimalTypeConvertsNumericToFloat()
     {
         $number = 101;
         $object = new DecimalType($number);
-        $this->assertSame((float) $number, $object->get_());
+        $this->assertSame((float) $number, $object->getValue());
     }
 
     public function testNonNumericTypeFailsToBeConverted()

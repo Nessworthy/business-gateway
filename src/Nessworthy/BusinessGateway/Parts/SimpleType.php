@@ -10,12 +10,13 @@ interface SimpleType extends Type
      * Return the data for this type.
      * @return mixed
      */
-    public function get_();
+    public function __toString();
 
     /**
      * Return the data for this type.
-     * @see SimpleType::get_()
+     * Should only support '_' as a key.
+     * @param $key The key to request.
      * @return mixed
      */
-    public function __toString();
+    public function __get($key);
 }

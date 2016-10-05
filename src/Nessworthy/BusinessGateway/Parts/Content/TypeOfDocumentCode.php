@@ -29,11 +29,10 @@ class TypeOfDocumentCode extends StringType implements Enumeration
     const CODE_SURRENDER_OF_DEVELOPMENT_RIGHTS = 170;
     const CODE_TERMINATION_DOCUMENT = 180;
 
-
     /**
      * @inheritDoc
      */
-    function getEnumerableChoices()
+    public function getEnumerableChoices()
     {
         return [
             self::CODE_ABSTRACT,

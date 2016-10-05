@@ -8,7 +8,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
     public function testDateTimeTypeAcceptsValidDate()
     {
         $dateObject = new DateType('2010-12-31');
-        $this->assertSame('2010-12-31', $dateObject->get_());
+        $this->assertSame('2010-12-31', $dateObject->getValue());
     }
 
     public function testDateTimeTypeDoesNotAcceptInvalidDate()

@@ -19,7 +19,7 @@ class StringTypeText extends \PHPUnit_Framework_TestCase
         $example = 'Hello World!';
         $object = new StringType($example);
 
-        $this->assertSame($example, $object->get_());
+        $this->assertSame($example, $object->getValue());
     }
 
     /**
@@ -30,7 +30,7 @@ class StringTypeText extends \PHPUnit_Framework_TestCase
     {
         $object = new StringType($var);
 
-        $this->assertSame((string) $var, $object->get_());
+        $this->assertSame((string) $var, $object->getValue());
     }
 
     public function testNonStringableInputThrowsInvalidPrimitiveTypeException()

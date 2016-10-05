@@ -1,11 +1,12 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\Primitive;
 
+use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Nessworthy\BusinessGateway\Parts\SimpleType;
 
 abstract class BaseSimpleType implements SimpleType
 {
-    protected $_;
+    private $_;
 
     public function __construct($data) {
         $this->_ = $data;
@@ -14,13 +15,27 @@ abstract class BaseSimpleType implements SimpleType
     /**
      * @inheritDoc
      */
-    public function get_()
+    public function __toString()
     {
         return $this->_;
     }
 
-    public function __toString()
+    /**
+     * @inheritDoc
+     */
+    public function __get($key) {
+        if($key === '_') {
+            return $this->_;
+        }
+        throw new InvalidArgumentException('Undefined property ' . $key);
+    }
+
+    /**
+     * Return the value of this simple type.
+     * @return mixed
+     */
+    public function getValue()
     {
-        return $this->get_();
+        return $this->_;
     }
 }

@@ -19,7 +19,7 @@ class NormalizedStringTypeTest extends \PHPUnit_Framework_TestCase
         $example = 'Hello World!';
         $object = new NormalizedStringType($example);
 
-        $this->assertSame($example, $object->get_());
+        $this->assertSame($example, $object->getValue());
     }
 
     /**
@@ -30,7 +30,7 @@ class NormalizedStringTypeTest extends \PHPUnit_Framework_TestCase
     {
         $object = new NormalizedStringType($var);
 
-        $this->assertSame((string) $var, $object->get_());
+        $this->assertSame((string) $var, $object->getValue());
     }
 
     public function testNonStringableInputThrowsInvalidPrimitiveTypeException()
