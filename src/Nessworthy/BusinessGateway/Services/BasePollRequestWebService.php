@@ -8,7 +8,7 @@ abstract class BasePollRequestWebService extends Base
      */
     protected function getServiceType()
     {
-        return 'PollRequestWebService';
+        return 'PollWebService';
     }
 
     /**
@@ -19,4 +19,11 @@ abstract class BasePollRequestWebService extends Base
         return 'PollRequest';
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function getNamespace()
+    {
+        return 'http://www.oscre.org/ns/eReg/MR01-20090605/PollRequest';
+    }
 }

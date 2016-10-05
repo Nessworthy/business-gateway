@@ -23,14 +23,4 @@ abstract class BaseSimpleType implements SimpleType
     {
         return $this->get_();
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function sanityCheck()
-    {
-        // By default, simple types are sanitised on construction, and don't need further checking.
-        // Override this if you need to do this retroactively.
-        return true;
-    }
 }

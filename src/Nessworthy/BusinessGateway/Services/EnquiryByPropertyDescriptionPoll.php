@@ -11,15 +11,6 @@ class EnquiryByPropertyDescriptionPoll extends BasePollRequestWebService
         return 'EnquiryByPropertyDescription';
     }
 
-
-    /**
-     * @inheritDoc
-     */
-    public function getRequestName()
-    {
-        return 'RequestDaylistEnquiryV2_0';
-    }
-
     /**
      * @inheritDoc
      */

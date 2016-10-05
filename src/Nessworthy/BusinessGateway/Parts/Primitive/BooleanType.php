@@ -10,30 +10,34 @@ class BooleanType extends BaseSimpleType
     /**
      * Convert the data into a more suitable form.
      * @param mixed $var
-     * @return string
+     * @return bool
      */
     protected function convertType($var)
     {
-        if(in_array($var, ['true', 'false']) === true) {
-            return $var;
+        if(in_array($var, ['true', 'false'], true) === true) {
+            return $this->convertToType($var);
         }
 
-        return $this->convertToType((bool) $var);
+        if(!is_bool($var)) {
+            throw new \InvalidArgumentException('Expected BooleanType to be a boolean one of: \'true\', \'false\', neither given.');
+        }
+
+        return (bool) $var;
     }
 
     /**
      * @throws \InvalidArgumentException
-     * @param bool $bool
+     * @param string $bool
      * @return string
      */
     private function convertToType($bool) {
-        if($bool === true) {
-            return 'true';
+        if($bool === 'true') {
+            return true;
         }
-        if($bool === false) {
-            return 'false';
+        if($bool === 'false') {
+            return false;
         }
-        throw new \InvalidArgumentException('ConvertToType expects argument 1 to be a boolean, which was not given.');
+        throw new \InvalidArgumentException('ConvertToType expects argument 1 to be \'true\' or \'false\', neither given.');
     }
 
     /**
