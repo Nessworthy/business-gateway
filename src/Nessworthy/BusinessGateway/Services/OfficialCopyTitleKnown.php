@@ -16,7 +16,7 @@ class OfficialCopyTitleKnown extends BaseWebService
      */
     public function getRequestName()
     {
-        return 'RequestTitleKnownOfficialCopyV2_1';
+        return 'performTitleKnownSearch';
     }
 
     /**
@@ -25,5 +25,13 @@ class OfficialCopyTitleKnown extends BaseWebService
     public function getVersion()
     {
         return '2.1';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getNamespace()
+    {
+        return 'http://www.oscre.org/ns/eReg-Final/2011/RequestTitleKnownOfficialCopyV2_1';
     }
 }

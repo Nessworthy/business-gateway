@@ -10,5 +10,4 @@ abstract class BaseWebService extends Base
     {
         return 'WebService';
     }
-
 }

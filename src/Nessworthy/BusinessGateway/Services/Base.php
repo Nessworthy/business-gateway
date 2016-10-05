@@ -11,7 +11,7 @@ abstract class Base implements Service
     public function getWsdlName()
     {
         return sprintf(
-            '%s%s%s?wsdl',
+            '%s%s%s',
             $this->getServiceName(),
             $this->getServiceVersion(),
             $this->getServiceType()

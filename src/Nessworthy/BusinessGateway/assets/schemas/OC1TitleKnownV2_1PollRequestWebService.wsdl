@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="OC1TitleKnownV2_0PollRequestWebService" targetNamespace="http://poll.officialcopyv2_1.ws.bg.lr.gov/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://poll.officialcopyv2_1.ws.bg.lr.gov/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://poll.officialcopyv2_1.ws.bg.lr.gov/" xmlns:ns1="http://www.oscre.org/ns/eReg/MR01-20090605/PollRequest" xmlns:ns2="http://www.oscre.org/ns/eReg-Final/2011/ResponseTitleKnownOfficialCopyV2_0" xmlns:ns3="http://poll.officialcopyv2_1.ws.bg.lr.gov/">
+            <xsd:import namespace="http://www.oscre.org/ns/eReg/MR01-20090605/PollRequest" schemaLocation="PollRequest.xsd"/>
+            <xsd:import namespace="http://www.oscre.org/ns/eReg-Final/2011/ResponseTitleKnownOfficialCopyV2_0" schemaLocation="ResponseTitleKnownOfficialCopyV2_0.xsd"/>
+            <xsd:element name="SOAPEngineSystemException" nillable="true" type="xsd:string"/>
+            <xsd:element name="getResponse" type="ns3:getResponse"/>
+            <xsd:element name="getResponseResponse" type="ns3:getResponseResponse"/>
+            <xsd:complexType name="getResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="arg0" type="ns1:PollRequestType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="getResponseResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="return" type="ns2:ResponseTitleKnownOfficialCopyV2_0Type"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+    <message name="oC1TitleKnownPollRequest">
+        <part name="parameters" element="tns:getResponse">
+        </part>
+    </message>
+    <message name="oC1TitleKnownPollResponse">
+        <part name="parameters" element="tns:getResponseResponse">
+        </part>
+    </message>
+    <message name="SOAPEngineSystemException">
+        <part name="fault" element="tns:SOAPEngineSystemException">
+        </part>
+    </message>
+    <portType name="OC1TitleKnownV2_1PollService">
+        <operation name="getResponse">
+            <input message="tns:oC1TitleKnownPollRequest">
+            </input>
+            <output message="tns:oC1TitleKnownPollResponse">
+            </output>
+            <fault name="SOAPEngineSystemException" message="tns:SOAPEngineSystemException">
+            </fault>
+        </operation>
+    </portType>
+    <binding name="OC1TitleKnownV2_1PollRequestWSImplPortBinding" type="tns:OC1TitleKnownV2_1PollService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getResponse">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="SOAPEngineSystemException">
+                <soap:fault name="SOAPEngineSystemException" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="OC1TitleKnownV2_1PollRequestWebService">
+        <port name="OC1TitleKnownV2_1PollRequestWSImplPort" binding="tns:OC1TitleKnownV2_1PollRequestWSImplPortBinding">
+            <soap:address location="https://z0.b2b.http.server.landregistry.gov:13007/ECBG_StubService/OC1TitleKnownV2_1PollRequestWebService"/>
+        </port>
+    </service>
+</definitions>

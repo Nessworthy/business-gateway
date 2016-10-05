@@ -44,8 +44,8 @@ class Client extends \SoapClient
 
         $options['location'] = $environment->getUri() . '/' . $service->getWsdlName();
 
-        //return parent::__construct($environment->getUri() . '/' . $service->getWsdlName(), $options);
-        return parent::__construct(__DIR__ . '/assets/schemas/EnquiryByPropertyDescriptionV2_0WebService/EnquiryByPropertyDescriptionV2_0WebService.wsdl', $options);
+        // return parent::__construct($environment->getUri() . '/' . $service->getWsdlName() . '?wsdl, $options);
+        return parent::__construct(__DIR__ . '/assets/schemas/' . $service->getWsdlName() . '.wsdl', $options);
 
     }
 
