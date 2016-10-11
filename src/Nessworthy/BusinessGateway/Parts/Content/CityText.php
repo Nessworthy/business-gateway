@@ -1,38 +1,23 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\Content;
 use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MaxLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MinLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Pattern;
 
 /**
  * Class CityText
  * Holds a city name.
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class CityText extends StringType implements MaxLength, MinLength, Pattern
+class CityText extends StringType
 {
     /**
-     * @inheritDoc
+     * CityText constructor.
+     * @param string $city
      */
-    public function getMinLength()
+    public function __construct(string $city)
     {
-        return 1;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMaxLength()
-    {
-        return 35;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getPattern()
-    {
-        return '#^.*\S.*$#';
+        $this->validateMinLength($city, 1);
+        $this->validateMaxLength($city, 35);
+        $this->validateRegEx($city, '#^.*\S.*$#');
+        return parent::__construct($city);
     }
 }

@@ -1,35 +1,38 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\Content;
+
 use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Enumeration;
 
 /**
  * Class TenureCode
  * Holds a tenure option.
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class TenureCode extends StringType implements Enumeration
+class TenureCode extends StringType
 {
-    const CODE_OTHER = 0;
-    const CODE_FREEHOLD = 10;
-    const CODE_LEASEHOLD = 20;
-    const CODE_COMMONHOLD = 30;
-    const CODE_FEUHOLD = 40;
-    const CODE_MIXED = 100;
-    const CODE_UNKNOWN = 110;
-    const CODE_UNAVAILABLE = 120;
-    const CODE_CAUTION_AGAINST_FIRST_REGISTRATION = 130;
-    const CODE_RENT_CHARGE = 140;
-    const CODE_FRANCHISE = 150;
-    const CODE_PROFIT_A_PRENDRE_IN_GROSS = 160;
-    const CODE_MANOR = 170;
+    const CODE_OTHER = '0';
+    const CODE_FREEHOLD = '10';
+    const CODE_LEASEHOLD = '20';
+    const CODE_COMMONHOLD = '30';
+    const CODE_FEUHOLD = '40';
+    const CODE_MIXED = '100';
+    const CODE_UNKNOWN = '110';
+    const CODE_UNAVAILABLE = '120';
+    const CODE_CAUTION_AGAINST_FIRST_REGISTRATION = '130';
+    const CODE_RENT_CHARGE = '140';
+    const CODE_FRANCHISE = '150';
+    const CODE_PROFIT_A_PRENDRE_IN_GROSS = '160';
+    const CODE_MANOR = '170';
 
     /**
-     * @inheritDoc
+     * TenureCode constructor.
+     * @param string $tenureCode
      */
-    function getEnumerableChoices()
+    public function __construct(string $tenureCode)
     {
-        return [
+        $this->validateEnumeration(
+            $tenureCode,
+            [
             self::CODE_OTHER,
             self::CODE_FREEHOLD,
             self::CODE_LEASEHOLD,
@@ -43,7 +46,8 @@ class TenureCode extends StringType implements Enumeration
             self::CODE_FRANCHISE,
             self::CODE_PROFIT_A_PRENDRE_IN_GROSS,
             self::CODE_MANOR
-        ];
+            ]
+        );
+        return parent::__construct($tenureCode);
     }
-
 }

@@ -2,38 +2,22 @@
 namespace Nessworthy\BusinessGateway\Parts\Content;
 
 use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MaxLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MinLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Pattern;
 
 /**
  * Class MessageIDText
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class MessageIDText extends StringType implements MinLength, MaxLength, Pattern
+class MessageIDText extends StringType
 {
     /**
-     * @inheritDoc
+     * MessageIDText constructor.
+     * @param string $messageId
      */
-    function getMaxLength()
+    public function __construct(string $messageId)
     {
-        return 50;
+        $this->validateMinLength($messageId, 5);
+        $this->validateMaxLength($messageId, 50);
+        $this->validateRegEx($messageId, '#^[a-zA-Z0-9][a-zA-Z0-9\-]*$#');
+        return parent::__construct($messageId);
     }
-
-    /**
-     * @inheritDoc
-     */
-    function getMinLength()
-    {
-        return 5;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    function getPattern()
-    {
-        return '#^[a-zA-Z0-9][a-zA-Z0-9\-]*$#';
-    }
-
 }

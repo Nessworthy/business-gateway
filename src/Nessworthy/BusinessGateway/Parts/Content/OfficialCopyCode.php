@@ -1,26 +1,32 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\Content;
+
 use Nessworthy\BusinessGateway\Parts\Primitive\NormalizedStringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Enumeration;
 
 /**
  * Class OfficialCopyCode
  * Holds a copy code reference.
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class OfficialCopyCode extends NormalizedStringType implements Enumeration
+class OfficialCopyCode extends NormalizedStringType
 {
-    const CODE_REGISTER_ONLY = 10;
-    const CODE_TITLE_ONLY = 20;
+    const CODE_OC1 = '10';
+    const CODE_OC2 = '20';
+
     /**
-     * @inheritDoc
+     * OfficialCopyCode constructor.
+     * @param string $officialCopyCode
      */
-    function getEnumerableChoices()
+    public function __construct(string $officialCopyCode)
     {
-        return [
-            self::CODE_REGISTER_ONLY,
-            self::CODE_TITLE_ONLY
-        ];
+        $this->validateEnumeration(
+            $officialCopyCode,
+            [
+                self::CODE_OC1,
+                self::CODE_OC2,
+            ]
+        );
+        return parent::__construct($officialCopyCode);
     }
 
 }

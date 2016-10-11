@@ -2,19 +2,20 @@
 namespace Nessworthy\BusinessGateway\Parts\Content;
 
 use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Pattern;
 
 /**
  * Class Q3Text
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class Q3Text extends StringType implements Pattern
+class Q3Text extends StringType
 {
     /**
-     * @inheritDoc
+     * Q3Text constructor.
+     * @param string $text
      */
-    public function getPattern()
+    public function __construct(string $text)
     {
-        return '#^.*\S.*$#';
+        $this->validateRegEx($text, '#^.*\S.*$#');
+        return parent::__construct($text);
     }
 }

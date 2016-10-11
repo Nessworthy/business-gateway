@@ -28,7 +28,7 @@ class Q1TitleKnownOfficialCopy extends BaseComplexType
     public function __construct(
         PropertyDescriptionText $propertyDescription,
         OfficialCopyCode $officialCopyTypeCode,
-        Indicator $continueIfTitleIsClosedAnyContinuedIndicator,
+        Indicator $continueIfTitleIsClosedAndContinuedIndicator,
         Indicator $notifyIfPendingFirstRegistrationIndicator,
         Indicator $notifyIfPendingApplicationIndicator,
         Indicator $sendBackDatedIndicator,
@@ -38,8 +38,9 @@ class Q1TitleKnownOfficialCopy extends BaseComplexType
         parent::__construct();
         $this->addChild('PropertyDescription', $propertyDescription);
         $this->addChild('OfficialCopyTypeCode', $officialCopyTypeCode);
-        $this->addChild('ContinueIfTitleIsClosedAndContinuedIndicator', $continueIfTitleIsClosedAnyContinuedIndicator);
+        $this->addChild('ContinueIfTitleIsClosedAndContinuedIndicator', $continueIfTitleIsClosedAndContinuedIndicator);
         $this->addChild('NotifyIfPendingFirstRegistrationIndicator', $notifyIfPendingFirstRegistrationIndicator);
+        $this->addChild('NotifyIfPendingApplicationIndicator', $notifyIfPendingApplicationIndicator);
         $this->addChild('SendBackDatedIndicator', $sendBackDatedIndicator);
         $this->addChild('ContinueIfActualFeeExceedsExpectedFeeIndicator', $continueIfActualFeeExceedsExpectedFeeIndicator);
     }

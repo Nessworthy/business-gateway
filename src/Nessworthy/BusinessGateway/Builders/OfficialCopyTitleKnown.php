@@ -49,13 +49,23 @@ class OfficialCopyTitleKnown implements Builder
     private $customerReference;
     private $property;
     private $expectedPrice;
-    private $titleKnownOfficialCopy;
     private $contacts = [];
 
     // Alternative Despatch Details
     private $alternativeDespatchName;
     private $alternativeDespatchReference;
     private $alternativeDespatchAddress;
+
+    // Title Known Official Copy
+    private $propertyDescription;
+    private $officialCopyCode;
+    private $continueIfTitleIsClosedAndContinued;
+    private $notifyIfPendingFirstRegistration;
+    private $requestedOfficialCopyCode;
+    private $continueIfActualFeeExceedsExpectedFee;
+    private $notifyIfPendingApplication;
+    private $sendBackDated;
+    private $estatePlanPlotNumbers = [];
 
     /**
      * Set a unique message ID for this request.
@@ -136,7 +146,7 @@ class OfficialCopyTitleKnown implements Builder
         $this->customerReference = $reference;
     }
 
-    public function setProperty($titleNumber, $tenureCode = null)
+    public function setTitle($titleNumber, $tenureCode = null)
     {
         $property = new Q1SubjectProperty(
             new Q2Text($titleNumber)
@@ -165,7 +175,7 @@ class OfficialCopyTitleKnown implements Builder
             $expectedPrice->setVATAmount(new Amount($vatAmount));
         }
 
-        $this->expectedPrice = null;
+        $this->expectedPrice = $expectedPrice;
     }
 
     public function setAlternativeDespatchName($alternativeDespatchName)
@@ -209,45 +219,42 @@ class OfficialCopyTitleKnown implements Builder
         $this->alternativeDespatchAddress = $despatchAddress;
     }
 
-    public function setTitleKnownOfficialCopy(
-        $propertyDescription,
-        $officialCopyType,
-        $continueIfTitleIsClosedAndContinued,
-        $notifyIfPendingFirstRegistration,
-        $notifyIfPendingApplication,
-        $sendBackDated,
-        $continueIfActualFeeExceedsExpectedFee,
-        $requestedOfficialCopyCode = null,
-        array $estatePlanPlotNumbers = []
-    )
+    public function setPropertyDescription($propertyDescription)
     {
-        $titleKnownOfficialCopy = new Q1TitleKnownOfficialCopy(
-            new PropertyDescriptionText($propertyDescription),
-            new OfficialCopyCode($officialCopyType),
-            new Indicator($continueIfTitleIsClosedAndContinued),
-            new Indicator($notifyIfPendingFirstRegistration),
-            new Indicator($notifyIfPendingApplication),
-            new Indicator($sendBackDated),
-            new Indicator($continueIfActualFeeExceedsExpectedFee)
-        );
+        $this->propertyDescription = new PropertyDescriptionText($propertyDescription);
+    }
 
-        if($requestedOfficialCopyCode) {
-            $titleKnownOfficialCopy->setRequestedOfficialCopyCode(
-                new RequestedOfficialCopyCode($requestedOfficialCopyCode)
-            );
-        }
+    public function setOfficialCopyCode($officialCopyCode)
+    {
+        $this->officialCopyCode = new OfficialCopyCode($officialCopyCode);
+    }
 
-        if(count($estatePlanPlotNumbers) > 0) {
-            foreach($estatePlanPlotNumbers as $key => $value) {
-                $estatePlanPlotNumbers[$key] = new NumericType($value);
-            }
-            $titleKnownOfficialCopy->setCertificateInFormCI(
-                new Q1CertificateInFormCI(
-                    $estatePlanPlotNumbers
-                )
-            );
-        }
-        $this->titleKnownOfficialCopy = $titleKnownOfficialCopy;
+    public function setContinueIfTitleIsClosedAndContinued($indicate) {
+        $this->continueIfTitleIsClosedAndContinued = new Indicator($indicate);
+    }
+
+    public function setNotifyIfPendingFirstRegistration($indicate) {
+        $this->notifyIfPendingFirstRegistration = new Indicator($indicate);
+    }
+
+    public function setNotifyIfPendingApplication($indicate) {
+        $this->notifyIfPendingApplication = new Indicator($indicate);
+    }
+
+    public function setSendBackDated($indicate) {
+        $this->sendBackDated = new Indicator($indicate);
+    }
+
+    public function setContinueIfActualFeeExceedsExpectedFee($indicate) {
+        $this->continueIfActualFeeExceedsExpectedFee = new Indicator($indicate);
+    }
+
+    public function setRequestedOfficialCopyCode($officialCopyCode) {
+        $this->requestedOfficialCopyCode = new RequestedOfficialCopyCode($officialCopyCode);
+    }
+
+    public function addEstatePlanPlotNumber($estatePlanPlotNumber) {
+        $this->estatePlanPlotNumbers[] = new NumericType($estatePlanPlotNumber);
     }
 
     public function addContact($name, $telephone)
@@ -263,12 +270,37 @@ class OfficialCopyTitleKnown implements Builder
     {
         $id = new Q1Identifier($this->messageId);
 
+        $titleKnownOfficialCopy = new Q1TitleKnownOfficialCopy(
+            $this->propertyDescription,
+            $this->officialCopyCode,
+            $this->continueIfTitleIsClosedAndContinued,
+            $this->notifyIfPendingFirstRegistration,
+            $this->notifyIfPendingApplication,
+            $this->sendBackDated,
+            $this->continueIfActualFeeExceedsExpectedFee
+        );
+
+        if($this->requestedOfficialCopyCode) {
+            $titleKnownOfficialCopy->setRequestedOfficialCopyCode(
+                new RequestedOfficialCopyCode($this->requestedOfficialCopyCode)
+            );
+        }
+
+        if(count($this->estatePlanPlotNumbers) > 0) {
+            $titleKnownOfficialCopy->setCertificateInFormCI(
+                new Q1CertificateInFormCI(
+                    $this->estatePlanPlotNumbers
+                )
+            );
+        }
+        $this->titleKnownOfficialCopy = $titleKnownOfficialCopy;
+
         $product = new Q1Product(
             $this->externalReference,
             $this->customerReference,
             $this->property,
             $this->contacts,
-            $this->titleKnownOfficialCopy
+            $titleKnownOfficialCopy
         );
 
         if(count($this->documentDetails)) {

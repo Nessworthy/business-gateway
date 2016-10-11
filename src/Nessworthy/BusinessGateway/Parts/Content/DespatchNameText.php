@@ -1,38 +1,24 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\Content;
+
 use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MaxLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MinLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Pattern;
 
 /**
  * Class DespatchNameText
  * Holds a despatch name.
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class DespatchNameText extends StringType implements MaxLength, MinLength, Pattern
+class DespatchNameText extends StringType
 {
     /**
-     * @inheritDoc
+     * DespatchNameText constructor.
+     * @param string $despatchName
      */
-    public function getMinLength()
+    public function __construct(string $despatchName)
     {
-        return 1;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMaxLength()
-    {
-        return 70;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getPattern()
-    {
-        return '#^[A-Za-z0-9\s~!&quot;@#$%\'\(\)\*\+,\-\./:;=&gt;\?\[\\\]_\{\}\^&#xa3;&amp;]*$#';
+        $this->validateMinLength($despatchName, 1);
+        $this->validateMaxLength($despatchName, 70);
+        $this->validateRegEx($despatchName, '#^[A-Za-z0-9\s~!&quot;@#$%\'\(\)\*\+,\-\./:;=&gt;\?\[\\\]_\{\}\^&#xa3;&amp;]*$#');
+        return parent::__construct($despatchName);
     }
 }

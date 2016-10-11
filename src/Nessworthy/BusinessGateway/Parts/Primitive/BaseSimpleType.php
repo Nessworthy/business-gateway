@@ -8,6 +8,11 @@ abstract class BaseSimpleType implements SimpleType
 {
     private $_;
 
+    /**
+     * BaseSimpleType constructor.
+     * Pass the data to store.
+     * @param mixed $data
+     */
     public function __construct($data) {
         $this->_ = $data;
     }

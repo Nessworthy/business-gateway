@@ -2,37 +2,22 @@
 namespace Nessworthy\BusinessGateway\Parts\Content;
 
 use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MaxLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MinLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Pattern;
 
 /**
  * Class Q4Text
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class Q4Text extends StringType implements MinLength, MaxLength, Pattern
+class Q4Text extends StringType
 {
     /**
-     * @inheritDoc
+     * Q4Text constructor.
+     * @param string $text
      */
-    function getMinLength()
+    public function __construct(string $text)
     {
-        return 1;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    function getMaxLength()
-    {
-        return 25;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getPattern()
-    {
-        return '#^[A-Za-z0-9\s~!&quot;@#$%\'\(\)\*\+,\-\./:;=&gt;\?\[\\\]_\{\}\^&#xa3;&amp;]*$#';
+        $this->validateMinLength($text, 1);
+        $this->validateMaxLength($text, 25);
+        $this->validateRegEx($text, '#^[A-Za-z0-9\s~!&quot;@#$%\'\(\)\*\+,\-\./:;=&gt;\?\[\\\]_\{\}\^&#xa3;&amp;]*$#');
+        return parent::__construct($text);
     }
 }

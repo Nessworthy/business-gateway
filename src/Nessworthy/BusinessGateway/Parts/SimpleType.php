@@ -15,7 +15,7 @@ interface SimpleType extends Type
     /**
      * Return the data for this type.
      * Should only support '_' as a key.
-     * @param $key The key to request.
+     * @param string $key The key to request.
      * @return mixed
      */
     public function __get($key);

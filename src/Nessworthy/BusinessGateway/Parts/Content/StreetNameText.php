@@ -1,38 +1,23 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\Content;
 use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MaxLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MinLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Pattern;
 
 /**
  * Class StreetNameText
  * Holds a valid UK street name.
  * @package Nessworthy\BusinessGateway\Parts\Content
  */
-class StreetNameText extends StringType implements MaxLength, MinLength, Pattern
+class StreetNameText extends StringType
 {
     /**
-     * @inheritDoc
+     * StreetNameText constructor.
+     * @param string $streetName
      */
-    public function getMinLength()
+    public function __construct(string $streetName)
     {
-        return 1;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getMaxLength()
-    {
-        return 80;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getPattern()
-    {
-        return '#^.*\S.*$#';
+        $this->validateMinLength($streetName, 1);
+        $this->validateMaxLength($streetName, 80);
+        $this->validateRegEx($streetName, '#^.*\S.*$#');
+        return parent::__construct($streetName);
     }
 }

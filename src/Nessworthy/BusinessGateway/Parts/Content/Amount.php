@@ -29,4 +29,13 @@ class Amount extends DecimalType
     {
         return $this->currencyId;
     }
+
+    public function __get($key)
+    {
+        // TODO: Add better support for attributes.
+        if($key === 'currencyID') {
+            return $this->currencyId;
+        }
+        return parent::__get($key);
+    }
 }

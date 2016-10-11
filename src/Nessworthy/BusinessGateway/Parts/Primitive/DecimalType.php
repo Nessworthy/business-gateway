@@ -1,10 +1,6 @@
 <?php
 namespace Nessworthy\BusinessGateway\Parts\Primitive;
 
-use Nessworthy\BusinessGateway\Parts\InvalidPrimitiveTypeException;
-use Nessworthy\BusinessGateway\Parts\Restrictions\Enumeration;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MaxLength;
-use Nessworthy\BusinessGateway\Parts\Restrictions\MinLength;
 use Nessworthy\BusinessGateway\Parts\ValidationRestrictionException;
 
 /**
@@ -13,76 +9,70 @@ use Nessworthy\BusinessGateway\Parts\ValidationRestrictionException;
  */
 class DecimalType extends BaseSimpleType
 {
-    /**
-     * Convert the data into a more suitable form.
-     * @param mixed $var
-     * @return string
-     */
-    protected function convertType($var)
-    {
-        /**
-         * Possible php string conversions.
-         * Props to user mpen of StackOverflow
-         * @link http://stackoverflow.com/a/27368848/2274710
-         */
-       if(is_numeric($var)) {
-           return (float) $var;
-       }
-
-        throw new InvalidPrimitiveTypeException(sprintf(
-            '%s expected a float or type which can be converted to float, %s given.',
-            __CLASS__,
-            gettype($var)
-        ));
+    public function __construct(float $float) {
+        return parent::__construct($float);
     }
 
-    public function __construct($float) {
-
-        $className = __CLASS__;
-
-        $float = $this->convertType($float);
-
-        if($this instanceof MinLength) {
-
-            $minLength = $this->getMinLength();
-
-            if($float < $minLength) {
-                throw new ValidationRestrictionException(sprintf(
-                    '%s expected a float of at least %s, %s given.',
-                    $className,
-                    $minLength,
-                    $minLength === 1 ? '' : 's',
-                    $float
-                ));
-            }
+    /**
+     * Validate a given input to ensure it is greater than (or equal to) the minimum length given.
+     * @param float $input
+     * @param int $minLength
+     */
+    final protected function validateMinLength(float $input, int $minLength) {
+        if($input < $minLength) {
+            throw new ValidationRestrictionException(sprintf(
+                'Expected a float of at least %s, %s given.',
+                $minLength,
+                $input
+            ));
         }
+    }
 
-        if($this instanceof MaxLength) {
-
-            $maxLength = $this->getMaxLength();
-
-            if($float < $maxLength) {
-                throw new ValidationRestrictionException(sprintf(
-                    '%s expected a float of at most %s, %s given.',
-                    $className,
-                    $maxLength,
-                    $maxLength === 1 ? '' : 's',
-                    $float
-                ));
-            }
+    /**
+     * Validate a given input to ensure it is less than (or equal to) the maximum length given.
+     * @throws ValidationRestrictionException
+     * @param float $input
+     * @param int $maxLength
+     */
+    final protected function validateMaxLength(float $input, int $maxLength) {
+        if($input > $maxLength) {
+            throw new ValidationRestrictionException(sprintf(
+                'Expected a float of at most %s, %s given.',
+                $maxLength,
+                $input
+            ));
         }
+    }
 
-        if($this instanceof Enumeration) {
-            $choices = $this->getEnumerableChoices();
-            if(!in_array($float, $choices)) {
-                throw new ValidationRestrictionException(sprintf(
-                    '%s expected one of the following choices: %s, "%s" given',
-                    implode(', ', $choices),
-                    $float
-                ));
-            }
+    /**
+     * Validate a given input against a regular expression.
+     * @throws ValidationRestrictionException
+     * @param float $input
+     * @param string $pattern
+     */
+    final protected function validateRegEx(float $input, string $pattern) {
+        if(preg_match($pattern, $input) !== 1) {
+            throw new ValidationRestrictionException(sprintf(
+                'Expected a float matching the pattern ' . "\n" . '%s.',
+                $pattern
+            ));
         }
+    }
 
-        return parent::__construct($float);
+    /**
+     * Validate a given input against an array of choices.
+     * @throws ValidationRestrictionException
+     * @param float $input
+     * @param float[] $choices
+     */
+    final protected function validateEnumeration(float $input, array $choices)
+    {
+        if(!in_array($input, $choices, true)) {
+            throw new ValidationRestrictionException(sprintf(
+                'Expected one of the following choices: %s, "%s" given',
+                implode(', ', $choices),
+                $input
+            ));
+        }
     }
 }

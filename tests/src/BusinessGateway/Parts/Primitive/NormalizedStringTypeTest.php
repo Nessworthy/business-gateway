@@ -1,7 +1,6 @@
 <?php
 namespace Nessworthy\BusinessGateway\Tests\Parts\Primitive;
 
-use Nessworthy\BusinessGateway\Parts\InvalidPrimitiveTypeException;
 use Nessworthy\BusinessGateway\Parts\Primitive\NormalizedStringType;
 
 class NormalizedStringTypeTest extends \PHPUnit_Framework_TestCase
@@ -35,7 +34,7 @@ class NormalizedStringTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testNonStringableInputThrowsInvalidPrimitiveTypeException()
     {
-        $this->expectException(InvalidPrimitiveTypeException::class);
+        $this->expectException(\TypeError::class);
         new NormalizedStringType(new \stdClass());
     }
 }

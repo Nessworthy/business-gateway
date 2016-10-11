@@ -30,7 +30,7 @@ abstract class BaseComplexType implements ComplexType
      */
     public function __get($key)
     {
-        return $this->children[$key];
+        return $this->getChild($key);
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class BaseComplexType implements ComplexType
         throw new InvalidChildException(sprintf(
             'Tried to retrieve invalid child named %s in %s.',
             $childKey,
-            __CLASS__
+            get_class($this)
         ));
     }
 
@@ -96,7 +96,7 @@ abstract class BaseComplexType implements ComplexType
             );
         }
 
-        if(!is_null($this->children[$key])) {
+        if(!is_null($this->children[$key]) && (!is_array($this->children[$key]) || count($this->children[$key]) > 1)) {
             throw new \InvalidArgumentException(
                 'Tried to add a child to already set key ' . $key
             );

@@ -35,7 +35,7 @@ class StringTypeText extends \PHPUnit_Framework_TestCase
 
     public function testNonStringableInputThrowsInvalidPrimitiveTypeException()
     {
-        $this->expectException(InvalidPrimitiveTypeException::class);
+        $this->expectException(\TypeError::class);
         new StringType(new \stdClass());
     }
 }

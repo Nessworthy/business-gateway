@@ -21,7 +21,7 @@ class DecimalTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testNonNumericTypeFailsToBeConverted()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(\TypeError::class);
         new DecimalType('Not a number.');
     }
 }
