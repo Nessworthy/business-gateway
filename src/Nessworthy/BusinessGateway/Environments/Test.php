@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Nessworthy\BusinessGateway\Environments;
 
@@ -28,7 +28,11 @@ class Test extends Base
      */
     const SERVICE_OTHER = 'BGStubService';
 
-    public function __construct($serviceGroup = self::SERVICE_OTHER)
+    /**
+     * Test Constructor.
+     * @param string $serviceGroup The service group to use. This is based on the type of request you want to use!
+     */
+    public function __construct(string $serviceGroup = self::SERVICE_OTHER)
     {
         return parent::__construct(sprintf('https://bgtest.landregistry.gov.uk/b2b/%s', $serviceGroup));
     }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Tests\Parts\Primitive;
 
 use Nessworthy\BusinessGateway\Parts\Primitive\NormalizedStringType;
@@ -19,17 +19,6 @@ class NormalizedStringTypeTest extends \PHPUnit_Framework_TestCase
         $object = new NormalizedStringType($example);
 
         $this->assertSame($example, $object->getValue());
-    }
-
-    /**
-     * @dataProvider scalarProvider
-     * @param mixed $var
-     */
-    public function testStringTypeAcceptsScalarNonString($var)
-    {
-        $object = new NormalizedStringType($var);
-
-        $this->assertSame((string) $var, $object->getValue());
     }
 
     public function testNonStringableInputThrowsInvalidPrimitiveTypeException()

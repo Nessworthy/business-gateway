@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Tests\Parts\Documents;
 
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\PollRequest\Q1Identifier;

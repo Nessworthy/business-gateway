@@ -1,22 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway;
 
 use Nessworthy\BusinessGateway\System\Cert;
 use Nessworthy\BusinessGateway\System\Credentials;
+use Nessworthy\BusinessGateway\System\EncryptedCert;
 use Nessworthy\BusinessGateway\System\Environment;
 use Nessworthy\BusinessGateway\System\Service;
 
-class Foo
-{
-    public $_;
-    public $Type = '';
-
-    public function __construct($var, $type) {
-        $this->_ = $var;
-        $this->Type = $type;
-    }
-}
-
+/**
+ * Class Client
+ * The main Client to handle requests to the land registry.
+ * @package Nessworthy\BusinessGateway
+ */
 class Client extends \SoapClient
 {
     private $environment;
@@ -25,31 +20,49 @@ class Client extends \SoapClient
     private $cert;
     protected $locale = 'en';
 
-    public function __construct(Cert $cert, Credentials $credentials, Environment $environment, Service $service, $options = array())
+    /**
+     * Client constructor.
+     * @param Cert $cert
+     * @param Credentials $credentials
+     * @param Environment $environment
+     * @param Service $service
+     * @param array $soapClientOptions Any additional options to pass directly to SoapClient
+     */
+    public function __construct(
+        Cert $cert,
+        Credentials $credentials,
+        Environment $environment,
+        Service $service,
+        array $soapClientOptions = array()
+    )
     {
         $this->environment = $environment;
         $this->service = $service;
         $this->credentials = $credentials;
         $this->cert = $cert;
 
-        $options['local_cert'] = $cert->getCertLocation();
-        $passPhrase = $cert->getCertPassPhrase();
-        if ($passPhrase) {
-            $options['passphrase'] = $passPhrase;
+        $soapClientOptions['local_cert'] = $cert->getCertLocation();
+        if($cert instanceof EncryptedCert) {
+            $soapClientOptions['passphrase'] = $cert->getCertPassPhrase();
         }
-        $options['login'] = $credentials->getUsername();
-        $options['password'] = $credentials->getPassword();
-        $options['soap_version'] = SOAP_1_1;
-        $options['cache_wsdl'] = WSDL_CACHE_NONE;
+        $soapClientOptions['login'] = $credentials->getUsername();
+        $soapClientOptions['password'] = $credentials->getPassword();
+        $soapClientOptions['soap_version'] = SOAP_1_1;
+        $soapClientOptions['cache_wsdl'] = WSDL_CACHE_NONE;
 
-        $options['location'] = $environment->getUri() . '/' . $service->getWsdlName();
+        $soapClientOptions['location'] = $environment->getUri() . '/' . $service->getWsdlName();
 
         // return parent::__construct($environment->getUri() . '/' . $service->getWsdlName() . '?wsdl, $options);
-        return parent::__construct(__DIR__ . '/assets/schemas/' . $service->getWsdlName() . '.wsdl', $options);
+        return parent::__construct(__DIR__ . '/assets/schemas/' . $service->getWsdlName() . '.wsdl', $soapClientOptions);
 
     }
 
-    public function buildHeaders()
+    /**
+     * Build the headers for an API request.
+     * A lot of this is really hack-y because SoapClient is terrible in some respects.
+     * @return array
+     */
+    private function buildHeaders() : array
     {
         $wsseNamespace = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
         $i18nNamespace = 'http://www.w3.org/2005/09/ws-i18n';

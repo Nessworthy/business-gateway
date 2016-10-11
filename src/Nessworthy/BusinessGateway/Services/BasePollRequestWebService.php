@@ -1,12 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Services;
 
+/**
+ * Class BasePollRequestWebService
+ * Base implementation class specifically for poll requests.
+ * @package Nessworthy\BusinessGateway\Services
+ */
 abstract class BasePollRequestWebService extends Base
 {
     /**
      * @inheritDoc
      */
-    protected function getServiceType()
+    protected function getServiceType() : string
     {
         return 'PollWebService';
     }
@@ -14,7 +19,7 @@ abstract class BasePollRequestWebService extends Base
     /**
      * @inheritDoc
      */
-    public function getRequestName()
+    public function getRequestName() : string
     {
         return 'PollRequest';
     }
@@ -22,7 +27,7 @@ abstract class BasePollRequestWebService extends Base
     /**
      * @inheritDoc
      */
-    public function getNamespace()
+    public function getNamespace() : string
     {
         return 'http://www.oscre.org/ns/eReg/MR01-20090605/PollRequest';
     }

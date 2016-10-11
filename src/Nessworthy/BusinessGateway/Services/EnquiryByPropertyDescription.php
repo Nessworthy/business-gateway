@@ -1,12 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Services;
 
+/**
+ * Class EnquiryByPropertyDescription
+ * Service which represents a Search by Property Description request.
+ * @package Nessworthy\BusinessGateway\Services
+ */
 class EnquiryByPropertyDescription extends BaseWebService
 {
     /**
      * @inheritDoc
      */
-    protected function getServiceName()
+    protected function getServiceName() : string
     {
         return 'EnquiryByPropertyDescription';
     }
@@ -14,7 +19,7 @@ class EnquiryByPropertyDescription extends BaseWebService
     /**
      * @inheritDoc
      */
-    public function getRequestName()
+    public function getRequestName() : string
     {
         return 'searchProperties';
     }
@@ -22,7 +27,7 @@ class EnquiryByPropertyDescription extends BaseWebService
     /**
      * @inheritDoc
      */
-    public function getVersion()
+    public function getVersion() : string
     {
         return '2.0';
     }
@@ -30,7 +35,7 @@ class EnquiryByPropertyDescription extends BaseWebService
     /**
      * @inheritDoc
      */
-    public function getNamespace()
+    public function getNamespace() : string
     {
         return 'http://www.oscre.org/ns/eReg-Final/2011/RequestSearchByPropertyDescriptionV2_0';
     }

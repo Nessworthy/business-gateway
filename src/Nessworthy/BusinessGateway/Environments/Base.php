@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Environments;
 
 use Nessworthy\BusinessGateway\System\Environment;
@@ -15,11 +15,8 @@ class Base implements Environment
      * Base constructor.
      * @param string $uri The URI of the environment endpoint.
      */
-    public function __construct($uri)
+    public function __construct(string $uri)
     {
-        if(!is_string($uri)) {
-            throw new \InvalidArgumentException('Environment URI expected to be string, ' . gettype($uri) . ' given.');
-        }
         $this->uri = $uri;
     }
 
@@ -27,7 +24,7 @@ class Base implements Environment
      * The endpoint URI for this environment.
      * @return string
      */
-    public function getUri()
+    public function getUri() : string
     {
         return $this->uri;
     }

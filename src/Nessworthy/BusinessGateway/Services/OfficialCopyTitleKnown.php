@@ -1,12 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Services;
 
+/**
+ * Class OfficialCopyTitleKnown
+ * Service implementation for an Official Copy Title Known request.
+ * @package Nessworthy\BusinessGateway\Services
+ */
 class OfficialCopyTitleKnown extends BaseWebService
 {
     /**
      * @inheritDoc
      */
-    protected function getServiceName()
+    protected function getServiceName() : string
     {
         return 'OfficialCopyTitleKnown';
     }
@@ -14,7 +19,7 @@ class OfficialCopyTitleKnown extends BaseWebService
     /**
      * @inheritDoc
      */
-    public function getRequestName()
+    public function getRequestName() : string
     {
         return 'performTitleKnownSearch';
     }
@@ -22,7 +27,7 @@ class OfficialCopyTitleKnown extends BaseWebService
     /**
      * @inheritDoc
      */
-    public function getVersion()
+    public function getVersion() : string
     {
         return '2.1';
     }
@@ -30,7 +35,7 @@ class OfficialCopyTitleKnown extends BaseWebService
     /**
      * @inheritDoc
      */
-    public function getNamespace()
+    public function getNamespace() : string
     {
         return 'http://www.oscre.org/ns/eReg-Final/2011/RequestTitleKnownOfficialCopyV2_1';
     }

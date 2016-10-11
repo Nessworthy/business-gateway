@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Builders;
 
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1AlternativeDespatchAddress;
@@ -72,7 +72,7 @@ class OfficialCopyTitleKnown implements Builder
      * This is used to refer to a specific request for debugging, and needed for using the polling service.
      * @param string $messageId A unique alphanumeric message ID between 5 and 50 characters; dashes are allowed.
      */
-    public function setMessageId($messageId)
+    public function setMessageId(string $messageId)
     {
         $messageId = new Q1Text($messageId);
         $this->messageId = $messageId;
@@ -87,10 +87,10 @@ class OfficialCopyTitleKnown implements Builder
      * @param null|string $additionalInformation
      */
     public function addDocumentDetails(
-        $typeOfDocument,
-        $dateOfDocument = null,
-        $titleNumberFiledUnder = null,
-        $additionalInformation = null
+        string $typeOfDocument,
+        string $dateOfDocument = null,
+        string $titleNumberFiledUnder = null,
+        string $additionalInformation = null
     )
     {
         $typeOfDocument = new TypeOfDocumentCode($typeOfDocument);
@@ -118,7 +118,7 @@ class OfficialCopyTitleKnown implements Builder
      * @param null|string $allocatedBy Currently unused. Who this reference was allocated by.
      * @param null|string $description Currently unused. An optional description about this reference.
      */
-    public function setExternalReference($reference, $allocatedBy = null, $description = null)
+    public function setExternalReference(string $reference, string $allocatedBy = null, string $description = null)
     {
         $externalReference = new Q1ExternalReference(new ReferenceText($reference));
 
@@ -132,21 +132,34 @@ class OfficialCopyTitleKnown implements Builder
         $this->externalReference = $externalReference;
     }
 
-    public function setCustomerReference($reference, $allocatedBy = null, $description = null)
+    /**
+     * Set the customer CMS reference.
+     * @param string $reference
+     * @param string|null $allocatedBy
+     * @param string|null $description
+     */
+    public function setCustomerReference(string $reference, string $allocatedBy = null, string $description = null)
     {
         $reference = new Q1CustomerReference(new ReferenceText($reference));
 
-        if($allocatedBy) {
+        if(!is_null($allocatedBy)) {
             $reference->setAllocatedBy(new Q3Text($allocatedBy));
         }
-        if($description) {
+        if(!is_null($description)) {
             $reference->setDescription(new Q3Text($description));
         }
 
         $this->customerReference = $reference;
     }
 
-    public function setTitle($titleNumber, $tenureCode = null)
+    /**
+     * Set the official title number to fetch information for,
+     * as well as an optional tenure code.
+     * @see TenureCode For acceptable TenureCode inputs.
+     * @param string $titleNumber
+     * @param string|null $tenureCode
+     */
+    public function setTitle(string $titleNumber, string $tenureCode = null)
     {
         $property = new Q1SubjectProperty(
             new Q2Text($titleNumber)
@@ -159,7 +172,17 @@ class OfficialCopyTitleKnown implements Builder
         $this->property = $property;
     }
 
-    public function setExpectedPrice($grossPriceAmount = null, $netPriceAmount = null, $vatAmount = null)
+    /**
+     * Set the expected price(s) for this property.
+     * @param float|null $grossPriceAmount
+     * @param float|null $netPriceAmount
+     * @param float|null $vatAmount
+     */
+    public function setExpectedPrice(
+        float $grossPriceAmount = null,
+        float $netPriceAmount = null,
+        float $vatAmount = null
+    )
     {
         $expectedPrice = new Q1ExpectedPrice();
 
@@ -178,21 +201,36 @@ class OfficialCopyTitleKnown implements Builder
         $this->expectedPrice = $expectedPrice;
     }
 
-    public function setAlternativeDespatchName($alternativeDespatchName)
+    /**
+     * Set the alternative despatch name.
+     * @param string $alternativeDespatchName
+     */
+    public function setAlternativeDespatchName(string $alternativeDespatchName)
     {
         $this->alternativeDespatchName = new DespatchNameText($alternativeDespatchName);
     }
 
+    /**
+     * Set the alternative despatch reference.
+     * @param $alternativeDespatchReference
+     */
     public function setAlternativeDespatchReference($alternativeDespatchReference)
     {
         $this->alternativeDespatchReference = new Q4Text($alternativeDespatchReference);
     }
 
+    /**
+     * Set the alternative despatch address.
+     * @param string[]|null $addressLines
+     * @param string|null $postcode
+     * @param string|null $dxNumber
+     * @param string|null $exchangeName
+     */
     public function setAlternativeDespatchAddress(
         array $addressLines = null,
-        $postcode = null,
-        $dxNumber  = null,
-        $exchangeName = null
+        string $postcode = null,
+        string $dxNumber  = null,
+        string $exchangeName = null
     )
     {
         $despatchAddress = new Q1AlternativeDespatchAddress();
@@ -219,45 +257,90 @@ class OfficialCopyTitleKnown implements Builder
         $this->alternativeDespatchAddress = $despatchAddress;
     }
 
-    public function setPropertyDescription($propertyDescription)
+    /**
+     * Set a property description.
+     * @param string $propertyDescription
+     */
+    public function setPropertyDescription(string $propertyDescription)
     {
         $this->propertyDescription = new PropertyDescriptionText($propertyDescription);
     }
 
-    public function setOfficialCopyCode($officialCopyCode)
+    /**
+     * Set the official copy code.
+     * @see OfficialCopyCode for acceptable inputs.
+     * @param string $officialCopyCode
+     */
+    public function setOfficialCopyCode(string $officialCopyCode)
     {
         $this->officialCopyCode = new OfficialCopyCode($officialCopyCode);
     }
 
-    public function setContinueIfTitleIsClosedAndContinued($indicate) {
+    /**
+     * Indicate to continue processing this request if the title # is closed
+     * and continued.
+     * @param bool $indicate
+     */
+    public function setContinueIfTitleIsClosedAndContinued(bool $indicate) {
         $this->continueIfTitleIsClosedAndContinued = new Indicator($indicate);
     }
 
-    public function setNotifyIfPendingFirstRegistration($indicate) {
+    /**
+     * Indicate to notify the callee if the title is pending first registration.
+     * @param bool $indicate
+     */
+    public function setNotifyIfPendingFirstRegistration(bool $indicate) {
         $this->notifyIfPendingFirstRegistration = new Indicator($indicate);
     }
 
-    public function setNotifyIfPendingApplication($indicate) {
+    /**
+     * Indicate to notify the callee if the title registration is pending.
+     * @param bool $indicate
+     */
+    public function setNotifyIfPendingApplication(bool $indicate) {
         $this->notifyIfPendingApplication = new Indicator($indicate);
     }
 
-    public function setSendBackDated($indicate) {
+    /**
+     * TODO
+     * @param bool $indicate
+     */
+    public function setSendBackDated(bool $indicate) {
         $this->sendBackDated = new Indicator($indicate);
     }
 
-    public function setContinueIfActualFeeExceedsExpectedFee($indicate) {
+    /**
+     * Indicate to continue processing if the actual fee of the title exceeds the fee expected.
+     * @param bool $indicate
+     */
+    public function setContinueIfActualFeeExceedsExpectedFee(bool $indicate) {
         $this->continueIfActualFeeExceedsExpectedFee = new Indicator($indicate);
     }
 
-    public function setRequestedOfficialCopyCode($officialCopyCode) {
+    /**
+     * Set the requested official copy code.
+     * @see RequestedOfficialCopyCode for acceptable inputs.
+     * @param string $officialCopyCode
+     */
+    public function setRequestedOfficialCopyCode(string $officialCopyCode) {
         $this->requestedOfficialCopyCode = new RequestedOfficialCopyCode($officialCopyCode);
     }
 
-    public function addEstatePlanPlotNumber($estatePlanPlotNumber) {
+    /**
+     * TODO
+     * @param float $estatePlanPlotNumber
+     */
+    public function addEstatePlanPlotNumber(float $estatePlanPlotNumber) {
         $this->estatePlanPlotNumbers[] = new NumericType($estatePlanPlotNumber);
     }
 
-    public function addContact($name, $telephone)
+    /**
+     * Add a contact for this request.
+     * Can be called multiple times to add more contacts.
+     * @param string $name
+     * @param string $telephone
+     */
+    public function addContact(string $name, string $telephone)
     {
         $name = new Q3Text($name);
         $communication = new Q1Communication(new Q3Text($telephone));
@@ -266,6 +349,10 @@ class OfficialCopyTitleKnown implements Builder
         $this->contacts[] = $contact;
     }
 
+    /**
+     * Build the full request.
+     * @return RequestTitleKnownOfficialCopyV2_1
+     */
     public function buildRequest()
     {
         $id = new Q1Identifier($this->messageId);
@@ -293,7 +380,6 @@ class OfficialCopyTitleKnown implements Builder
                 )
             );
         }
-        $this->titleKnownOfficialCopy = $titleKnownOfficialCopy;
 
         $product = new Q1Product(
             $this->externalReference,

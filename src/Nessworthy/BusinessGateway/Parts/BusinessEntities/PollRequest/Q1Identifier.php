@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\PollRequest;
 
 use Nessworthy\BusinessGateway\Parts\Content\MessageIDText;

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Nessworthy\BusinessGateway\Environments;
 
@@ -23,7 +23,12 @@ class Production extends Base
      */
     const SERVICE_OTHER = 'BGSoapEngine';
 
-    public function __construct($serviceGroup = self::SERVICE_OTHER)
+    /**
+     * Production constructor.
+     * Check the LR documentation for more information about the service groups.
+     * @param string $serviceGroup The service group to use. This is based on the type of request you want to use!
+     */
+    public function __construct(string $serviceGroup = self::SERVICE_OTHER)
     {
         return parent::__construct(sprintf('https://businessgateway.landregistry.gov.uk/b2b/%s', $serviceGroup));
     }

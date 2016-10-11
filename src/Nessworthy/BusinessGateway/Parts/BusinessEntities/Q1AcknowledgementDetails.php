@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities;
 
 use Nessworthy\BusinessGateway\Parts\Content\DateTime;

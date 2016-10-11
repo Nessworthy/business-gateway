@@ -1,14 +1,20 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Services;
 
 use Nessworthy\BusinessGateway\System\Service;
 
+/**
+ * Class Base
+ * Base implementation for API services.
+ * Contains some helper methods to auto-generate bits like the WSDL name.
+ * @package Nessworthy\BusinessGateway\Services
+ */
 abstract class Base implements Service
 {
     /**
      * @inheritDoc
      */
-    public function getWsdlName()
+    public function getWsdlName() : string
     {
         return sprintf(
             '%s%s%s',
@@ -21,12 +27,12 @@ abstract class Base implements Service
     /**
      * @return string
      */
-    abstract protected function getServiceName();
+    abstract protected function getServiceName() : string;
 
     /**
      * @return string
      */
-    protected function getServiceVersion()
+    protected function getServiceVersion() : string
     {
         return 'V' . str_replace('.', '_', $this->getVersion());
     }
@@ -34,5 +40,5 @@ abstract class Base implements Service
     /**
      * @return string
      */
-    abstract protected function getServiceType();
+    abstract protected function getServiceType() : string;
 }

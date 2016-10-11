@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\ResponseSearchByPropertyDescriptionV2_0;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1PostcodeZone;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNameText;

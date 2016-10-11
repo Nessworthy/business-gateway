@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Tests\Parts\Primitive;
 
 use Nessworthy\BusinessGateway\Parts\Primitive\DecimalType;
@@ -17,11 +17,5 @@ class DecimalTypeTest extends \PHPUnit_Framework_TestCase
         $number = 101;
         $object = new DecimalType($number);
         $this->assertSame((float) $number, $object->getValue());
-    }
-
-    public function testNonNumericTypeFailsToBeConverted()
-    {
-        $this->expectException(\TypeError::class);
-        new DecimalType('Not a number.');
     }
 }

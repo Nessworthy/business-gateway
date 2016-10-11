@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Tests\Parts\Content;
 
 use Nessworthy\BusinessGateway\Parts\Content\TypeOfDocumentCode;

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Builders;
 
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CustomerReference;
@@ -37,7 +37,7 @@ class EnquiryByPropertyDescription implements Builder
      * This is used to refer to a specific request for debugging, and needed for using the polling service.
      * @param string $messageId A unique alphanumeric message ID between 5 and 50 characters; dashes are allowed.
      */
-    public function setMessageId($messageId)
+    public function setMessageId(string $messageId)
     {
         $this->messageId = new Q1Identifier(new Q1Text($messageId));
     }
@@ -49,7 +49,7 @@ class EnquiryByPropertyDescription implements Builder
      * @param null|string $allocatedBy Currently unused. Who this reference was allocated by.
      * @param null|string $description Currently unused. An optional description about this reference.
      */
-    public function setExternalReference($reference, $allocatedBy = null, $description = null)
+    public function setExternalReference(string $reference, string $allocatedBy = null, string $description = null)
     {
         $externalReference = new Q1ExternalReference(new ReferenceText($reference));
 
@@ -70,7 +70,7 @@ class EnquiryByPropertyDescription implements Builder
      * @param null|string $allocatedBy Currently unused. Who this reference was allocated by.
      * @param null|string $description Currently unused. An optional description about this reference.
      */
-    public function setCustomerReference($reference, $allocatedBy = null, $description = null)
+    public function setCustomerReference(string $reference, string $allocatedBy = null, string $description = null)
     {
         $customerReference = new Q1CustomerReference(new ReferenceText($reference));
 
@@ -100,28 +100,28 @@ class EnquiryByPropertyDescription implements Builder
      * @param null|string $postcodeZone The postcode of the property. Partial postcodes are not accepted.
      */
     public function setAddress(
-        $buildingName = null,
-        $buildingNumber = null,
-        $streetName = null,
-        $cityName = null,
-        $postcodeZone = null
+        string $buildingName = null,
+        string $buildingNumber = null,
+        string $streetName = null,
+        string $cityName = null,
+        string $postcodeZone = null
     ) {
         $address = new Q1Address();
-        if(is_scalar($buildingName)) {
+        if($buildingName) {
             $address->setBuildingName(new BuildingNameText($buildingName));
         }
-        if(is_scalar($buildingNumber))
+        if($buildingNumber)
         {
             $address->setBuildingNumber(new BuildingNumberText($buildingNumber));
         }
-        if(is_scalar($streetName))
+        if($streetName)
         {
             $address->setStreetName(new StreetNameText($streetName));
         }
-        if(is_scalar($cityName)) {
+        if($cityName) {
             $address->setCityName(new CityText($cityName));
         }
-        if(is_scalar($postcodeZone)) {
+        if($postcodeZone) {
             $address->setPostcodeZone(new PostcodeText($postcodeZone));
         }
         $this->address = $address;
