@@ -107,7 +107,7 @@ class Client extends \SoapClient
 
     public function __doRequest($request, $location, $action, $version, $one_way = 0)
     {
-        /*$doc = new \DOMDocument('1.0');
+/*        $doc = new \DOMDocument('1.0');
         $doc->loadXML($request);
         $doc->formatOutput = true;
         echo $doc->saveXML();

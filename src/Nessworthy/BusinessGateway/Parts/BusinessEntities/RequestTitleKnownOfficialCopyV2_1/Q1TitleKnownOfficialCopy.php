@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Parts\BusinessEntities;
+namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1;
 
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CertificateInFormCI;
 use Nessworthy\BusinessGateway\Parts\Content\Indicator;
 use Nessworthy\BusinessGateway\Parts\Content\OfficialCopyCode;
 use Nessworthy\BusinessGateway\Parts\Content\PropertyDescriptionText;

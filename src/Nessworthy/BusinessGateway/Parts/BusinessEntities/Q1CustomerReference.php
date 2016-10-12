@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities;
+use Nessworthy\BusinessGateway\Parts\Content\Q3Text;
 use Nessworthy\BusinessGateway\Parts\Content\ReferenceText;
-use Nessworthy\BusinessGateway\Parts\Content\Text;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**
@@ -10,8 +10,8 @@ use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
  *
  * @package Nessworthy\BusinessGateway\Parts\BusinessEntities
  * @property ReferenceText Reference A unique reference.
- * @property Text|null AllocatedBy Not officially used.
- * @property Text|null Description Not officially used.
+ * @property Q3Text|null AllocatedBy Not officially used.
+ * @property Q3Text|null Description Not officially used.
  */
 class Q1CustomerReference extends BaseComplexType
 {
@@ -38,18 +38,18 @@ class Q1CustomerReference extends BaseComplexType
 
     /**
      * AllocatedBy by isn't officially used.
-     * @param Text $allocatedBy
+     * @param Q3Text $allocatedBy
      */
-    public function setAllocatedBy(Text $allocatedBy)
+    public function setAllocatedBy(Q3Text $allocatedBy)
     {
         $this->addChild('AllocatedBy', $allocatedBy);
     }
 
     /**
      * Description by isn't officially used.
-     * @param Text $description
+     * @param Q3Text $description
      */
-    public function setDescription(Text $description)
+    public function setDescription(Q3Text $description)
     {
         $this->addChild('Description', $description);
     }

@@ -11,9 +11,9 @@ use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1DocumentDetails;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1DXDetails;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1ExpectedPrice;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1Identifier;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1TitleKnownOfficialCopy;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1CustomerReference;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1ExternalReference;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1TitleKnownOfficialCopy;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CustomerReference;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1ExternalReference;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1Product;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1SubjectProperty;
 use Nessworthy\BusinessGateway\Parts\Content\Amount;
@@ -353,7 +353,7 @@ class OfficialCopyTitleKnown implements Builder
      * Build the full request.
      * @return RequestTitleKnownOfficialCopyV2_1
      */
-    public function buildRequest()
+    public function buildRequest() : RequestTitleKnownOfficialCopyV2_1
     {
         $id = new Q1Identifier($this->messageId);
 

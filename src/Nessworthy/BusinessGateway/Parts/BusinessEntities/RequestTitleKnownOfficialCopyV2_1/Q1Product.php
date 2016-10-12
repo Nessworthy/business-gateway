@@ -3,9 +3,11 @@ namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOff
 
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1AlternativeDespatchDetails;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1Contact;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CustomerReference;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1DocumentDetails;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1ExpectedPrice;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1TitleKnownOfficialCopy;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1ExternalReference;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1TitleKnownOfficialCopy;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**

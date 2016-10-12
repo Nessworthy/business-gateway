@@ -13,5 +13,5 @@ interface Builder
      * Build a request.
      * @return ComplexType The fully built request, represented as a nested collection of objects.
      */
-    public function buildRequest() : ComplexType;
+    public function buildRequest();
 }

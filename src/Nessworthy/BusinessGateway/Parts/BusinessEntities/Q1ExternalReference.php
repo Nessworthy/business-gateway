@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1;
+namespace Nessworthy\BusinessGateway\Parts\BusinessEntities;
 use Nessworthy\BusinessGateway\Parts\Content\Q3Text;
 use Nessworthy\BusinessGateway\Parts\Content\ReferenceText;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;

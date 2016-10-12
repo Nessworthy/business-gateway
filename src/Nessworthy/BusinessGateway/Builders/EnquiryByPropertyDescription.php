@@ -1,12 +1,13 @@
 <?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Builders;
 
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CustomerReference;
+use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1CustomerReference;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1Identifier;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1Address;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1ExternalReference;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1Product;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1SubjectProperty;
+use Nessworthy\BusinessGateway\Parts\ComplexType;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNameText;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNumberText;
 use Nessworthy\BusinessGateway\Parts\Content\CityText;
@@ -131,7 +132,7 @@ class EnquiryByPropertyDescription implements Builder
      * Build the request and return the built request data value object.
      * @return RequestSearchByPropertyDescriptionV2_0
      */
-    public function buildRequest()
+    public function buildRequest() : RequestSearchByPropertyDescriptionV2_0
     {
         if(!is_null($this->request)) {
             return $this->request;
