@@ -32,5 +32,4 @@ class Q1Contact extends BaseComplexType
         $this->addChild('Name', $name);
         $this->addChild('Communication', $communication);
     }
-
 }

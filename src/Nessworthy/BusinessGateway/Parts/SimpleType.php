@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts;
+
 /**
  * Interface SimpleType
  * Represents a simple primitive type with no children.

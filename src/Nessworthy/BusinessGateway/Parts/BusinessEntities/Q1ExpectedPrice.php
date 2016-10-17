@@ -46,5 +46,4 @@ class Q1ExpectedPrice extends BaseComplexType
     {
         $this->addChild('VATAmount', $vatAmount);
     }
-
 }

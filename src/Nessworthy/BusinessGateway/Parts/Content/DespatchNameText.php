@@ -18,7 +18,10 @@ class DespatchNameText extends StringType
     {
         $this->validateMinLength($despatchName, 1);
         $this->validateMaxLength($despatchName, 70);
-        $this->validateRegEx($despatchName, '#^[A-Za-z0-9\s~!&quot;@#$%\'\(\)\*\+,\-\./:;=&gt;\?\[\\\]_\{\}\^&#xa3;&amp;]*$#');
+        $this->validateRegEx(
+            $despatchName,
+            '#^[A-Za-z0-9\s~!&quot;@#$%\'\(\)\*\+,\-\./:;=&gt;\?\[\\\]_\{\}\^&#xa3;&amp;]*$#'
+        );
         return parent::__construct($despatchName);
     }
 }

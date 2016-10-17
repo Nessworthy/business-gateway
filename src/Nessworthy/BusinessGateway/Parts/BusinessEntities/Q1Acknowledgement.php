@@ -27,5 +27,4 @@ class Q1Acknowledgement extends BaseComplexType
         parent::__construct();
         $this->addChild('AcknowledgementDetails', $acknowledgementDetails);
     }
-
 }

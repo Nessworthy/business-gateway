@@ -31,7 +31,7 @@ use Nessworthy\BusinessGateway\Parts\Content\ReferenceText;
 use Nessworthy\BusinessGateway\Parts\Content\RequestedOfficialCopyCode;
 use Nessworthy\BusinessGateway\Parts\Content\TenureCode;
 use Nessworthy\BusinessGateway\Parts\Content\TypeOfDocumentCode;
-use Nessworthy\BusinessGateway\Parts\Documents\RequestTitleKnownOfficialCopyV2_1;
+use Nessworthy\BusinessGateway\Parts\Documents\RequestTitleKnownOfficialCopy;
 use Nessworthy\BusinessGateway\System\Builder;
 
 /**
@@ -91,20 +91,19 @@ class OfficialCopyTitleKnown implements Builder
         string $dateOfDocument = null,
         string $titleNumberFiledUnder = null,
         string $additionalInformation = null
-    )
-    {
+    ) {
         $typeOfDocument = new TypeOfDocumentCode($typeOfDocument);
         $document = new Q1DocumentDetails($typeOfDocument);
 
-        if($dateOfDocument) {
+        if ($dateOfDocument) {
             $document->setDateOfDocumentDate(new Date($dateOfDocument));
         }
 
-        if($titleNumberFiledUnder) {
+        if ($titleNumberFiledUnder) {
             $document->setTitleNumberFiledUnder(new Q2Text($titleNumberFiledUnder));
         }
 
-        if($additionalInformation) {
+        if ($additionalInformation) {
             $document->setAdditionalInformation(new Q3Text($additionalInformation));
         }
 
@@ -122,10 +121,10 @@ class OfficialCopyTitleKnown implements Builder
     {
         $externalReference = new Q1ExternalReference(new ReferenceText($reference));
 
-        if($allocatedBy) {
+        if ($allocatedBy) {
             $externalReference->setAllocatedBy(new Q3Text($allocatedBy));
         }
-        if($description) {
+        if ($description) {
             $externalReference->setDescription(new Q3Text($description));
         }
 
@@ -142,10 +141,10 @@ class OfficialCopyTitleKnown implements Builder
     {
         $reference = new Q1CustomerReference(new ReferenceText($reference));
 
-        if(!is_null($allocatedBy)) {
+        if (!is_null($allocatedBy)) {
             $reference->setAllocatedBy(new Q3Text($allocatedBy));
         }
-        if(!is_null($description)) {
+        if (!is_null($description)) {
             $reference->setDescription(new Q3Text($description));
         }
 
@@ -165,7 +164,7 @@ class OfficialCopyTitleKnown implements Builder
             new Q2Text($titleNumber)
         );
 
-        if($tenureCode) {
+        if ($tenureCode) {
             $property->setTenureCodeType(new TenureCode($tenureCode));
         }
 
@@ -182,19 +181,18 @@ class OfficialCopyTitleKnown implements Builder
         float $grossPriceAmount = null,
         float $netPriceAmount = null,
         float $vatAmount = null
-    )
-    {
+    ) {
         $expectedPrice = new Q1ExpectedPrice();
 
-        if($grossPriceAmount) {
+        if ($grossPriceAmount) {
             $expectedPrice->setGrossPriceAmount(new Amount($grossPriceAmount));
         }
 
-        if($netPriceAmount) {
+        if ($netPriceAmount) {
             $expectedPrice->setNetPriceAmount(new Amount($netPriceAmount));
         }
 
-        if($vatAmount) {
+        if ($vatAmount) {
             $expectedPrice->setVATAmount(new Amount($vatAmount));
         }
 
@@ -229,27 +227,26 @@ class OfficialCopyTitleKnown implements Builder
     public function setAlternativeDespatchAddress(
         array $addressLines = null,
         string $postcode = null,
-        string $dxNumber  = null,
+        string $dxNumber = null,
         string $exchangeName = null
-    )
-    {
+    ) {
         $despatchAddress = new Q1AlternativeDespatchAddress();
 
-        if($addressLines || $postcode) {
+        if ($addressLines || $postcode) {
             $alternativePostalAddress = new Q1AlternativePostalAddress();
-            if(count($addressLines) > 0) {
-                foreach($addressLines as $key => $addressLine) {
+            if (count($addressLines) > 0) {
+                foreach ($addressLines as $key => $addressLine) {
                     $addressLines[$key] = new Q3Text($addressLine);
                 }
                 $alternativePostalAddress->setAddressLine($addressLines);
             }
-            if($postcode) {
+            if ($postcode) {
                 $alternativePostalAddress->setPostcode(new Q3Text($postcode));
             }
             $despatchAddress->setPostalAddress($alternativePostalAddress);
         }
 
-        if($dxNumber || $exchangeName) {
+        if ($dxNumber || $exchangeName) {
             $dxDetails = new Q1DXDetails(new Q3Text($dxNumber), new Q3Text($exchangeName));
             $despatchAddress->setDXDetails($dxDetails);
         }
@@ -281,7 +278,8 @@ class OfficialCopyTitleKnown implements Builder
      * and continued.
      * @param bool $indicate
      */
-    public function setContinueIfTitleIsClosedAndContinued(bool $indicate) {
+    public function setContinueIfTitleIsClosedAndContinued(bool $indicate)
+    {
         $this->continueIfTitleIsClosedAndContinued = new Indicator($indicate);
     }
 
@@ -289,7 +287,8 @@ class OfficialCopyTitleKnown implements Builder
      * Indicate to notify the callee if the title is pending first registration.
      * @param bool $indicate
      */
-    public function setNotifyIfPendingFirstRegistration(bool $indicate) {
+    public function setNotifyIfPendingFirstRegistration(bool $indicate)
+    {
         $this->notifyIfPendingFirstRegistration = new Indicator($indicate);
     }
 
@@ -297,7 +296,8 @@ class OfficialCopyTitleKnown implements Builder
      * Indicate to notify the callee if the title registration is pending.
      * @param bool $indicate
      */
-    public function setNotifyIfPendingApplication(bool $indicate) {
+    public function setNotifyIfPendingApplication(bool $indicate)
+    {
         $this->notifyIfPendingApplication = new Indicator($indicate);
     }
 
@@ -305,7 +305,8 @@ class OfficialCopyTitleKnown implements Builder
      * TODO
      * @param bool $indicate
      */
-    public function setSendBackDated(bool $indicate) {
+    public function setSendBackDated(bool $indicate)
+    {
         $this->sendBackDated = new Indicator($indicate);
     }
 
@@ -313,7 +314,8 @@ class OfficialCopyTitleKnown implements Builder
      * Indicate to continue processing if the actual fee of the title exceeds the fee expected.
      * @param bool $indicate
      */
-    public function setContinueIfActualFeeExceedsExpectedFee(bool $indicate) {
+    public function setContinueIfActualFeeExceedsExpectedFee(bool $indicate)
+    {
         $this->continueIfActualFeeExceedsExpectedFee = new Indicator($indicate);
     }
 
@@ -322,7 +324,8 @@ class OfficialCopyTitleKnown implements Builder
      * @see RequestedOfficialCopyCode for acceptable inputs.
      * @param string $officialCopyCode
      */
-    public function setRequestedOfficialCopyCode(string $officialCopyCode) {
+    public function setRequestedOfficialCopyCode(string $officialCopyCode)
+    {
         $this->requestedOfficialCopyCode = new RequestedOfficialCopyCode($officialCopyCode);
     }
 
@@ -330,7 +333,8 @@ class OfficialCopyTitleKnown implements Builder
      * TODO
      * @param float $estatePlanPlotNumber
      */
-    public function addEstatePlanPlotNumber(float $estatePlanPlotNumber) {
+    public function addEstatePlanPlotNumber(float $estatePlanPlotNumber)
+    {
         $this->estatePlanPlotNumbers[] = new NumericType($estatePlanPlotNumber);
     }
 
@@ -351,9 +355,9 @@ class OfficialCopyTitleKnown implements Builder
 
     /**
      * Build the full request.
-     * @return RequestTitleKnownOfficialCopyV2_1
+     * @return RequestTitleKnownOfficialCopy
      */
-    public function buildRequest() : RequestTitleKnownOfficialCopyV2_1
+    public function buildRequest() : RequestTitleKnownOfficialCopy
     {
         $id = new Q1Identifier($this->messageId);
 
@@ -367,13 +371,13 @@ class OfficialCopyTitleKnown implements Builder
             $this->continueIfActualFeeExceedsExpectedFee
         );
 
-        if($this->requestedOfficialCopyCode) {
+        if ($this->requestedOfficialCopyCode) {
             $titleKnownOfficialCopy->setRequestedOfficialCopyCode(
                 new RequestedOfficialCopyCode($this->requestedOfficialCopyCode)
             );
         }
 
-        if(count($this->estatePlanPlotNumbers) > 0) {
+        if (count($this->estatePlanPlotNumbers) > 0) {
             $titleKnownOfficialCopy->setCertificateInFormCI(
                 new Q1CertificateInFormCI(
                     $this->estatePlanPlotNumbers
@@ -389,33 +393,36 @@ class OfficialCopyTitleKnown implements Builder
             $titleKnownOfficialCopy
         );
 
-        if(count($this->documentDetails)) {
+        if (count($this->documentDetails)) {
             $product->setDocumentDetails($this->documentDetails);
         }
 
-        if($this->expectedPrice) {
+        if ($this->expectedPrice) {
             $product->setExpectedPrice($this->expectedPrice);
         }
 
-        if($this->alternativeDespatchAddress || $this->alternativeDespatchReference || $this->alternativeDespatchName) {
+        if ($this->alternativeDespatchAddress
+            || $this->alternativeDespatchReference
+            || $this->alternativeDespatchName
+        ) {
             $alternativeDespatchDetails = new Q1AlternativeDespatchDetails();
 
-            if($this->alternativeDespatchName) {
+            if ($this->alternativeDespatchName) {
                 $alternativeDespatchDetails->setAlternativeDespatchName($this->alternativeDespatchName);
             }
 
-            if($this->alternativeDespatchReference) {
+            if ($this->alternativeDespatchReference) {
                 $alternativeDespatchDetails->setAlternativeDespatchReference($this->alternativeDespatchReference);
             }
 
-            if($this->alternativeDespatchAddress) {
+            if ($this->alternativeDespatchAddress) {
                 $alternativeDespatchDetails->setAlternativeDespatchAddress($this->alternativeDespatchAddress);
             }
 
             $product->setAlternativeDespatchDetails($alternativeDespatchDetails);
         }
 
-        $request = new RequestTitleKnownOfficialCopyV2_1($id, $product);
+        $request = new RequestTitleKnownOfficialCopy($id, $product);
 
         return $request;
     }

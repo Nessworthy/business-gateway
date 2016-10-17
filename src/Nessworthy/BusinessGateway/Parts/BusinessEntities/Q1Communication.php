@@ -24,5 +24,4 @@ class Q1Communication extends BaseComplexType
     {
         $this->defineChild('Telephone', 1, 1);
     }
-
 }

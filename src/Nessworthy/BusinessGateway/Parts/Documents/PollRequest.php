@@ -28,5 +28,4 @@ class PollRequest extends BaseComplexType
         parent::__construct();
         $this->addChild('ID', $Id);
     }
-
 }

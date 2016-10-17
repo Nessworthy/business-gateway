@@ -9,7 +9,8 @@ use Nessworthy\BusinessGateway\Parts\ValidationRestrictionException;
  */
 class DecimalType extends BaseSimpleType
 {
-    public function __construct(float $float) {
+    public function __construct(float $float)
+    {
         return parent::__construct($float);
     }
 
@@ -18,8 +19,9 @@ class DecimalType extends BaseSimpleType
      * @param float $input
      * @param int $minLength
      */
-    final protected function validateMinLength(float $input, int $minLength) {
-        if($input < $minLength) {
+    final protected function validateMinLength(float $input, int $minLength)
+    {
+        if ($input < $minLength) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected a float of at least %s, %s given.',
                 $minLength,
@@ -34,8 +36,9 @@ class DecimalType extends BaseSimpleType
      * @param float $input
      * @param int $maxLength
      */
-    final protected function validateMaxLength(float $input, int $maxLength) {
-        if($input > $maxLength) {
+    final protected function validateMaxLength(float $input, int $maxLength)
+    {
+        if ($input > $maxLength) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected a float of at most %s, %s given.',
                 $maxLength,
@@ -50,8 +53,9 @@ class DecimalType extends BaseSimpleType
      * @param float $input
      * @param string $pattern
      */
-    final protected function validateRegEx(float $input, string $pattern) {
-        if(preg_match($pattern, $input) !== 1) {
+    final protected function validateRegEx(float $input, string $pattern)
+    {
+        if (preg_match($pattern, $input) !== 1) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected a float matching the pattern ' . "\n" . '%s.',
                 $pattern
@@ -67,7 +71,7 @@ class DecimalType extends BaseSimpleType
      */
     final protected function validateEnumeration(float $input, array $choices)
     {
-        if(!in_array($input, $choices, true)) {
+        if (!in_array($input, $choices, true)) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected one of the following choices: %s, "%s" given',
                 implode(', ', $choices),

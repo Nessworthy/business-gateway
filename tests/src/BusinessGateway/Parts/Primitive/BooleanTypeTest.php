@@ -14,22 +14,4 @@ class BooleanTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($boolObjectTrue->getValue());
         $this->assertFalse($boolObjectFalse->getValue());
     }
-
-    public function testBooleanTypeAcceptsStringVersionsOfBooleans()
-    {
-        $this->expectException(\TypeError::class);
-        new BooleanType('true');
-    }
-
-    public function testBooleanTypeDoesNotAcceptInvalidStrings()
-    {
-        $this->expectException(\TypeError::class);
-        new BooleanType('Some string.');
-    }
-
-    public function testBooleanTypeDoesNotAcceptFalseyInput()
-    {
-        $this->expectException(\TypeError::class);
-        new BooleanType(0);
-    }
 }

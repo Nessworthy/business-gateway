@@ -33,7 +33,7 @@ class Amount extends DecimalType
     public function __get($key)
     {
         // TODO: Add better support for attributes.
-        if($key === 'currencyID') {
+        if ($key === 'currencyID') {
             return $this->currencyId;
         }
         return parent::__get($key);

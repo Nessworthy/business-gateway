@@ -9,8 +9,8 @@ class DateTimeType extends BaseSimpleType
      * @param string $date Accepts a standard date time.
      * @throws \Exception
      */
-    public function __construct($date) {
-
+    public function __construct($date)
+    {
         $dateTime = new \DateTimeImmutable($date); // Eh, lazy validation.
 
         return parent::__construct($dateTime->format('c'));

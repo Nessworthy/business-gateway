@@ -28,5 +28,4 @@ class Base implements Environment
     {
         return $this->uri;
     }
-
 }

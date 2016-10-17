@@ -45,8 +45,7 @@ class Q1Product extends BaseComplexType
         Q1ExternalReference $externalReference,
         Q1CustomerReference $customerReference,
         Q1TitleKnownOfficialCopy $titleKnownOfficialCopy
-    )
-    {
+    ) {
         parent::__construct();
         $this->addChild('SubjectProperty', $subjectProperty);
         $this->addChild('ExpectedPrice', $expectedPrice);
@@ -54,5 +53,4 @@ class Q1Product extends BaseComplexType
         $this->addChild('CustomerReference', $customerReference);
         $this->addChild('TitleKnownOfficialCopy', $titleKnownOfficialCopy);
     }
-
 }

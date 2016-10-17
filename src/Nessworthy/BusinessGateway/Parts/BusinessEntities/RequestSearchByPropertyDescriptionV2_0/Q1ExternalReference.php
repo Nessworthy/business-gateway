@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0;
+
 use Nessworthy\BusinessGateway\Parts\Content\ReferenceText;
 use Nessworthy\BusinessGateway\Parts\Content\Text;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;

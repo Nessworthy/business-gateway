@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\Content;
+
 use Nessworthy\BusinessGateway\Parts\Primitive\DecimalType;
 
 /**
@@ -9,5 +10,4 @@ use Nessworthy\BusinessGateway\Parts\Primitive\DecimalType;
  */
 class NumericType extends DecimalType
 {
-
 }

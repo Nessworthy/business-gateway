@@ -32,5 +32,4 @@ class Production extends Base
     {
         return parent::__construct(sprintf('https://businessgateway.landregistry.gov.uk/b2b/%s', $serviceGroup));
     }
-
 }

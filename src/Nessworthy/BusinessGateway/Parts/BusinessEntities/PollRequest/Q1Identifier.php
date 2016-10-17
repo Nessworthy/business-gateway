@@ -24,5 +24,4 @@ class Q1Identifier extends BaseComplexType
         parent::__construct();
         $this->addChild('MessageID', $messageId);
     }
-
 }

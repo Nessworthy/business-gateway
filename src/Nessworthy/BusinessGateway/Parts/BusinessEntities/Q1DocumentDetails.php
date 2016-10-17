@@ -61,5 +61,4 @@ class Q1DocumentDetails extends BaseComplexType
     {
         $this->addChild('AdditionalInformation', $additionalInformation);
     }
-
 }

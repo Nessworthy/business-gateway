@@ -17,8 +17,9 @@ class File implements Cert
      * File constructor.
      * @param string $location
      */
-    public function __construct(string $location) {
-        if(!file_exists($location)) {
+    public function __construct(string $location)
+    {
+        if (!file_exists($location)) {
             throw new \InvalidArgumentException('Could not locate the certificate file at ' . $location);
         }
         $this->location = $location;

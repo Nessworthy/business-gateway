@@ -7,7 +7,6 @@ use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDes
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1ExternalReference;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1Product;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1SubjectProperty;
-use Nessworthy\BusinessGateway\Parts\ComplexType;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNameText;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNumberText;
 use Nessworthy\BusinessGateway\Parts\Content\CityText;
@@ -16,7 +15,7 @@ use Nessworthy\BusinessGateway\Parts\Content\Q1Text;
 use Nessworthy\BusinessGateway\Parts\Content\ReferenceText;
 use Nessworthy\BusinessGateway\Parts\Content\StreetNameText;
 use Nessworthy\BusinessGateway\Parts\Content\Text;
-use Nessworthy\BusinessGateway\Parts\Documents\RequestSearchByPropertyDescriptionV2_0;
+use Nessworthy\BusinessGateway\Parts\Documents\RequestSearchByPropertyDescription;
 use Nessworthy\BusinessGateway\System\Builder;
 
 /**
@@ -54,10 +53,10 @@ class EnquiryByPropertyDescription implements Builder
     {
         $externalReference = new Q1ExternalReference(new ReferenceText($reference));
 
-        if(is_string($allocatedBy)) {
+        if (is_string($allocatedBy)) {
             $externalReference->setAllocatedBy(new Text($allocatedBy));
         }
-        if(is_string($description)) {
+        if (is_string($description)) {
             $externalReference->setDescription(new Text($description));
         }
 
@@ -75,10 +74,10 @@ class EnquiryByPropertyDescription implements Builder
     {
         $customerReference = new Q1CustomerReference(new ReferenceText($reference));
 
-        if(is_string($allocatedBy)) {
+        if (is_string($allocatedBy)) {
             $customerReference->setAllocatedBy(new Text($allocatedBy));
         }
-        if(is_string($description)) {
+        if (is_string($description)) {
             $customerReference->setDescription(new Text($description));
         }
 
@@ -108,21 +107,19 @@ class EnquiryByPropertyDescription implements Builder
         string $postcodeZone = null
     ) {
         $address = new Q1Address();
-        if($buildingName) {
+        if ($buildingName) {
             $address->setBuildingName(new BuildingNameText($buildingName));
         }
-        if($buildingNumber)
-        {
+        if ($buildingNumber) {
             $address->setBuildingNumber(new BuildingNumberText($buildingNumber));
         }
-        if($streetName)
-        {
+        if ($streetName) {
             $address->setStreetName(new StreetNameText($streetName));
         }
-        if($cityName) {
+        if ($cityName) {
             $address->setCityName(new CityText($cityName));
         }
-        if($postcodeZone) {
+        if ($postcodeZone) {
             $address->setPostcodeZone(new PostcodeText($postcodeZone));
         }
         $this->address = $address;
@@ -130,19 +127,18 @@ class EnquiryByPropertyDescription implements Builder
 
     /**
      * Build the request and return the built request data value object.
-     * @return RequestSearchByPropertyDescriptionV2_0
+     * @return RequestSearchByPropertyDescription
      */
-    public function buildRequest() : RequestSearchByPropertyDescriptionV2_0
+    public function buildRequest() : RequestSearchByPropertyDescription
     {
-        if(!is_null($this->request)) {
+        if (!is_null($this->request)) {
             return $this->request;
         }
         $subjectProperty = new Q1SubjectProperty($this->address);
         $product = new Q1Product($this->externalReference, $this->customerReference, $subjectProperty);
 
-        $request = new RequestSearchByPropertyDescriptionV2_0($this->messageId, $product);
+        $request = new RequestSearchByPropertyDescription($this->messageId, $product);
         $this->request = $request;
         return $request;
     }
-
 }

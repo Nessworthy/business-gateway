@@ -7,11 +7,11 @@ namespace Nessworthy\BusinessGateway\Parts\Primitive;
  */
 class DateType extends BaseSimpleType
 {
-
-    public function __construct($date) {
+    public function __construct($date)
+    {
 
         $dateTime = date_create_from_format('Y-m-d', $date); // Eh, lazy validation.
-        if(!$dateTime) {
+        if (!$dateTime) {
             throw new \InvalidArgumentException('DateType constructor expects a valid date in the format YYYY-MM-DD.');
         }
 

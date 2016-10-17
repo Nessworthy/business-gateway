@@ -17,7 +17,10 @@ class Q1Text extends StringType
     {
         $this->validateMinLength($text, 5);
         $this->validateMaxLength($text, 50);
-        $this->validateRegEx($text,'#^[a-zA-Z0-9][a-zA-Z0-9\-]*$#');
+        $this->validateRegEx(
+            $text,
+            '#^[a-zA-Z0-9][a-zA-Z0-9\-]*$#'
+        );
         return parent::__construct($text);
     }
 }

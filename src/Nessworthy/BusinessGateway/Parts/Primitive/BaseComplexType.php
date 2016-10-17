@@ -48,11 +48,11 @@ abstract class BaseComplexType implements ComplexType
      */
     public function getChild($childKey)
     {
-        if(!is_string($childKey)) {
+        if (!is_string($childKey)) {
             throw new \InvalidArgumentException(sprintf('Child key should be a string, %s given.', gettype($childKey)));
         }
 
-        if(array_key_exists($childKey, $this->children)) {
+        if (array_key_exists($childKey, $this->children)) {
             return $this->children[$childKey];
         }
 
@@ -65,7 +65,7 @@ abstract class BaseComplexType implements ComplexType
 
     public function __call($key, $arguments)
     {
-        if(strpos($key, 'get', 0) === 0) {
+        if (strpos($key, 'get', 0) === 0) {
             return $this->getChild(substr($key, 3));
         }
 
@@ -85,18 +85,18 @@ abstract class BaseComplexType implements ComplexType
      */
     protected function addChild($key, $value)
     {
-        if(!is_string($key)) {
+        if (!is_string($key)) {
             throw new \InvalidArgumentException(sprintf('Child key should be a string, %s given.', gettype($key)));
         }
 
-        if(!array_key_exists($key, $this->children)) {
+        if (!array_key_exists($key, $this->children)) {
             throw new \InvalidArgumentException(
                 'Tried to add a child to undefined key ' . $key . '.
                 If this is coming from a constructor, please ensure that parent::__construct() is called first.'
             );
         }
 
-        if(!is_null($this->children[$key]) && (!is_array($this->children[$key]) || count($this->children[$key]) > 1)) {
+        if (!is_null($this->children[$key]) && (!is_array($this->children[$key]) || count($this->children[$key]) > 1)) {
             throw new \InvalidArgumentException(
                 'Tried to add a child to already set key ' . $key
             );
@@ -105,8 +105,8 @@ abstract class BaseComplexType implements ComplexType
         $range = $this->childrenRange[$key];
         $numberOfValuesToAdd = is_array($value) ? count($value) : 1;
 
-        if($range['minimum'] !== self::UNBOUNDED) {
-            if($range['minimum'] > $numberOfValuesToAdd) {
+        if ($range['minimum'] !== self::UNBOUNDED) {
+            if ($range['minimum'] > $numberOfValuesToAdd) {
                 throw new ValidationRestrictionException(sprintf(
                     'Tried to set %s %s when the minimum defined amount for key %s is %s.',
                     $numberOfValuesToAdd,
@@ -117,9 +117,9 @@ abstract class BaseComplexType implements ComplexType
             }
         }
 
-        if($range['maximum'] !== self::UNBOUNDED) {
+        if ($range['maximum'] !== self::UNBOUNDED) {
             // Defined maximum amount!
-            if($range['maximum'] < $numberOfValuesToAdd) {
+            if ($range['maximum'] < $numberOfValuesToAdd) {
                 throw new ValidationRestrictionException(sprintf(
                     'Tried to add %s %s of when the maximum defined amount for key %s is %s.',
                     $numberOfValuesToAdd === 1 ? 'a' : $numberOfValuesToAdd,
@@ -131,7 +131,6 @@ abstract class BaseComplexType implements ComplexType
         }
 
         $this->children[$key] = $value;
-
     }
 
     /**
@@ -144,12 +143,12 @@ abstract class BaseComplexType implements ComplexType
      */
     protected function defineChild($key, $minimum = 1, $maximum = 1)
     {
-        if(!is_string($key)) {
+        if (!is_string($key)) {
             throw new \InvalidArgumentException(sprintf('Child key should be a string, %s given.', gettype($key)));
         }
 
-        if($minimum !== self::UNBOUNDED) {
-            if(!is_integer($minimum)) {
+        if ($minimum !== self::UNBOUNDED) {
+            if (!is_integer($minimum)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Minimum children definition for key %s expected to be a number, %s given.',
                     $key,
@@ -157,7 +156,7 @@ abstract class BaseComplexType implements ComplexType
                 ));
             }
 
-            if($minimum < 0) {
+            if ($minimum < 0) {
                 throw new \InvalidArgumentException(sprintf(
                     'Minimum children definition for key %s expected to be zero or greater, %s given.',
                     $key,
@@ -166,7 +165,7 @@ abstract class BaseComplexType implements ComplexType
             }
         }
 
-        if($maximum !== self::UNBOUNDED) {
+        if ($maximum !== self::UNBOUNDED) {
             if (!is_integer($maximum)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Maximum children definition for key %s expected to be a number, %s given.',
@@ -184,26 +183,26 @@ abstract class BaseComplexType implements ComplexType
             }
         }
 
-        if($minimum !== self::UNBOUNDED && $maximum !== self::UNBOUNDED && $minimum > $maximum) {
+        if ($minimum !== self::UNBOUNDED && $maximum !== self::UNBOUNDED && $minimum > $maximum) {
             throw new \InvalidArgumentException(sprintf(
-                'Minimum children definition for key %s expected to be less than the given maximum amount of %s, %s given.',
+                'Minimum children definition for key %s expected to be less 
+                than the given maximum amount of %s, %s given.',
                 $key,
                 $maximum,
                 $minimum
             ));
         }
 
-        if(array_key_exists($key, $this->children)) {
+        if (array_key_exists($key, $this->children)) {
             throw new \InvalidArgumentException(sprintf('Child key "%s" attempting to be defined twice.', $key));
         }
 
-        if($maximum === 1) {
+        if ($maximum === 1) {
             $this->children[$key] = null;
         } else {
             $this->children[$key] = array();
         }
 
         $this->childrenRange[$key] = array('minimum' => $minimum, 'maximum' => $maximum);
-
     }
 }

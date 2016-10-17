@@ -5,5 +5,4 @@ use Nessworthy\BusinessGateway\Parts\Primitive\StringType;
 
 class Text extends StringType
 {
-
 }

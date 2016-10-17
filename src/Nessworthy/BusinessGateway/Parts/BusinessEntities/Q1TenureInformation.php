@@ -19,5 +19,4 @@ class Q1TenureInformation extends BaseComplexType
         parent::__construct();
         $this->addChild('TenureTypeCode', $tenureTypeCode);
     }
-
 }

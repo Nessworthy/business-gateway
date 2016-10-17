@@ -34,8 +34,7 @@ class Q1TitleKnownOfficialCopy extends BaseComplexType
         Indicator $notifyIfPendingApplicationIndicator,
         Indicator $sendBackDatedIndicator,
         Indicator $continueIfActualFeeExceedsExpectedFeeIndicator
-    )
-    {
+    ) {
         parent::__construct();
         $this->addChild('PropertyDescription', $propertyDescription);
         $this->addChild('OfficialCopyTypeCode', $officialCopyTypeCode);
@@ -43,7 +42,10 @@ class Q1TitleKnownOfficialCopy extends BaseComplexType
         $this->addChild('NotifyIfPendingFirstRegistrationIndicator', $notifyIfPendingFirstRegistrationIndicator);
         $this->addChild('NotifyIfPendingApplicationIndicator', $notifyIfPendingApplicationIndicator);
         $this->addChild('SendBackDatedIndicator', $sendBackDatedIndicator);
-        $this->addChild('ContinueIfActualFeeExceedsExpectedFeeIndicator', $continueIfActualFeeExceedsExpectedFeeIndicator);
+        $this->addChild(
+            'ContinueIfActualFeeExceedsExpectedFeeIndicator',
+            $continueIfActualFeeExceedsExpectedFeeIndicator
+        );
     }
 
     public function setRequestedOfficialCopyCode(RequestedOfficialCopyCode $requestedOfficialCopyCode)
@@ -55,5 +57,4 @@ class Q1TitleKnownOfficialCopy extends BaseComplexType
     {
         $this->addChild('CertificateInFormCI', $certificateInFormCI);
     }
-
 }

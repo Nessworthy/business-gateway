@@ -11,7 +11,8 @@ class BooleanType extends BaseSimpleType
      * BooleanType constructor.
      * @param bool $bool
      */
-    public function __construct(bool $bool) {
+    public function __construct(bool $bool)
+    {
         return parent::__construct($bool);
     }
 }

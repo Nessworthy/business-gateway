@@ -13,7 +13,8 @@ class StringType extends BaseSimpleType
      * StringType constructor.
      * @param string $string A text string.
      */
-    public function __construct(string $string) {
+    public function __construct(string $string)
+    {
         return parent::__construct($string);
     }
 
@@ -22,10 +23,11 @@ class StringType extends BaseSimpleType
      * @param string $input
      * @param int $minLength
      */
-    final protected function validateMinLength(string $input, int $minLength) {
+    final protected function validateMinLength(string $input, int $minLength)
+    {
         $length = strlen($input);
 
-        if($length < $minLength) {
+        if ($length < $minLength) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected a string of at least %s character%s, %s given.',
                 $minLength,
@@ -41,10 +43,11 @@ class StringType extends BaseSimpleType
      * @param string $input
      * @param int $maxLength
      */
-    final protected function validateMaxLength(string $input, int $maxLength) {
+    final protected function validateMaxLength(string $input, int $maxLength)
+    {
         $length = strlen($input);
 
-        if($length > $maxLength) {
+        if ($length > $maxLength) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected a string of at most %s character%s, %s given.',
                 $maxLength,
@@ -60,8 +63,9 @@ class StringType extends BaseSimpleType
      * @param string $input
      * @param string $pattern
      */
-    final protected function validateRegEx(string $input, string $pattern) {
-        if(preg_match($pattern, $input) !== 1) {
+    final protected function validateRegEx(string $input, string $pattern)
+    {
+        if (preg_match($pattern, $input) !== 1) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected a string matching the pattern ' . "\n" . '%s.',
                 $pattern
@@ -77,7 +81,7 @@ class StringType extends BaseSimpleType
      */
     final protected function validateEnumeration(string $input, array $choices)
     {
-        if(!in_array($input, $choices, true)) {
+        if (!in_array($input, $choices, true)) {
             throw new ValidationRestrictionException(sprintf(
                 'Expected one of the following choices: %s, "%s" given',
                 implode(', ', $choices),

@@ -36,8 +36,7 @@ class Q1TitleKnownOfficialCopy extends BaseComplexType
         Indicator $sendBackDatedIndicator,
         Indicator $continueIfActualFeeExceedsExpectedFeeIndicator,
         Indicator $includeTitlePlanIndicator
-    )
-    {
+    ) {
         parent::__construct();
         $this->addChild('ContinueIfTitleIsClosedAndContinuedIndicator', $continueIfTitleIsClosedAndContinuedIndicator);
         $this->addChild('NotifyIfPendingFirstRegistrationIndicator', $notifyIfPendingFirstRegistrationIndicator);
@@ -46,5 +45,4 @@ class Q1TitleKnownOfficialCopy extends BaseComplexType
         $this->addChild('ContinueIfActualFeeExceedsExpectedFeeIndicator', $continueIfActualFeeExceedsExpectedFeeIndicator);
         $this->addChild('IncludeTitlePlanIndicator', $includeTitlePlanIndicator);
     }
-
 }

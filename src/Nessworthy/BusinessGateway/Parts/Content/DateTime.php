@@ -5,5 +5,4 @@ use Nessworthy\BusinessGateway\Parts\Primitive\DateTimeType;
 
 class DateTime extends DateTimeType
 {
-
 }

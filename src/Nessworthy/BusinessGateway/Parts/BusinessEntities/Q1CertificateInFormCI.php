@@ -27,5 +27,4 @@ class Q1CertificateInFormCI extends BaseComplexType
         parent::__construct();
         $this->addChild('EstatePlanPlotNumberNumeric', $estatePlanPlotNumberNumeric);
     }
-
 }

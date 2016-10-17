@@ -19,5 +19,4 @@ class Q1MessageDetails extends BaseComplexType
         parent::__construct();
         $this->addChild('Description', $description);
     }
-
 }

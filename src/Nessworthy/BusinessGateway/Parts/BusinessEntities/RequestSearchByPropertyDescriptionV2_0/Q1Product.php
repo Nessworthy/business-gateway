@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0;
 
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1CustomerReference;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**
@@ -40,12 +39,10 @@ class Q1Product extends BaseComplexType
         Q1ExternalReference $externalReference,
         Q1CustomerReference $customerReference,
         Q1SubjectProperty $subjectProperty
-    )
-    {
+    ) {
         parent::__construct();
         $this->addChild('ExternalReference', $externalReference);
         $this->addChild('CustomerReference', $customerReference);
         $this->addChild('SubjectProperty', $subjectProperty);
     }
-
 }

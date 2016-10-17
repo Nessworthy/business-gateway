@@ -19,5 +19,4 @@ class Q1PostcodeZone extends BaseComplexType
         parent::__construct();
         $this->addChild('Postcode', $postcode);
     }
-
 }

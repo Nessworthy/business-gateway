@@ -30,5 +30,4 @@ class EncryptedFile extends File implements EncryptedCert
     {
         return $this->passPhrase;
     }
-
 }

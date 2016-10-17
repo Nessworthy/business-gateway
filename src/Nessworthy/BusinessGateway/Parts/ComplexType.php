@@ -20,5 +20,4 @@ interface ComplexType extends Type
      * @return SimpleType|ComplexType|array|null
      */
     public function __get($childKey);
-
 }

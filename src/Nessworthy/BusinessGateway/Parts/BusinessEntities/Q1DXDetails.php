@@ -32,5 +32,4 @@ class Q1DXDetails extends BaseComplexType
         $this->addChild('DXNumber', $dxNumber);
         $this->addChild('ExchangeName', $exchangeName);
     }
-
 }

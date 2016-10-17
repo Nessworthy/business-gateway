@@ -28,5 +28,4 @@ class OfficialCopyCode extends NormalizedStringType
         );
         return parent::__construct($officialCopyCode);
     }
-
 }

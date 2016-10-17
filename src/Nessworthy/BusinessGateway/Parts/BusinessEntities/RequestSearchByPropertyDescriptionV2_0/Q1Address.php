@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 namespace Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0;
+
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNameText;
 use Nessworthy\BusinessGateway\Parts\Content\BuildingNumberText;
 use Nessworthy\BusinessGateway\Parts\Content\CityText;

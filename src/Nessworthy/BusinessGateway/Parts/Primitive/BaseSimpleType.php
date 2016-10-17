@@ -13,7 +13,8 @@ abstract class BaseSimpleType implements SimpleType
      * Pass the data to store.
      * @param mixed $data
      */
-    public function __construct($data) {
+    public function __construct($data)
+    {
         $this->_ = $data;
     }
 
@@ -28,8 +29,9 @@ abstract class BaseSimpleType implements SimpleType
     /**
      * @inheritDoc
      */
-    public function __get($key) {
-        if($key === '_') {
+    public function __get($key)
+    {
+        if ($key === '_') {
             return $this->_;
         }
         throw new InvalidArgumentException('Undefined property ' . $key);

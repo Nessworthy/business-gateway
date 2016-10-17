@@ -36,5 +36,4 @@ class Q1AlternativeDespatchAddress extends BaseComplexType
     {
         $this->addChild('DXDetails', $dxDetails);
     }
-
 }

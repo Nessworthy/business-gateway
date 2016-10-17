@@ -29,12 +29,10 @@ class Q1AcknowledgementDetails extends BaseComplexType
         Identifier $uniqueId,
         DateTime $expectedResponseDateTime,
         Text $messageDescription
-    )
-    {
+    ) {
         parent::__construct();
         $this->addChild('UniqueID', $uniqueId);
         $this->addChild('ExpectedResponseDateTime', $expectedResponseDateTime);
         $this->addChild('MessageDescription', $messageDescription);
     }
-
 }

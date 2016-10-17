@@ -7,7 +7,6 @@ use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CustomerReference;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1DocumentDetails;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1ExpectedPrice;
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1ExternalReference;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestTitleKnownOfficialCopyV2_1\Q1TitleKnownOfficialCopy;
 use Nessworthy\BusinessGateway\Parts\Primitive\BaseComplexType;
 
 /**
@@ -53,8 +52,7 @@ class Q1Product extends BaseComplexType
         Q1SubjectProperty $subjectProperty,
         array $contact,
         Q1TitleKnownOfficialCopy $titleKnownOfficialCopy
-    )
-    {
+    ) {
         parent::__construct();
         $this->addChild('ExternalReference', $externalReference);
         $this->addChild('CustomerReference', $customerReference);
@@ -86,6 +84,4 @@ class Q1Product extends BaseComplexType
     {
         $this->addChild('AlternativeDespatchDetails', $alternativeDespatchDetails);
     }
-
-
 }

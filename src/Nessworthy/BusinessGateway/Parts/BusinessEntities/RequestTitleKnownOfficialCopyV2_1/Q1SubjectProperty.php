@@ -33,5 +33,4 @@ class Q1SubjectProperty extends BaseComplexType
     {
         $this->addChild('TenureTypeCode', $tenureTypeCode);
     }
-
 }

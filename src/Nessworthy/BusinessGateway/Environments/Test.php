@@ -36,5 +36,4 @@ class Test extends Base
     {
         return parent::__construct(sprintf('https://bgtest.landregistry.gov.uk/b2b/%s', $serviceGroup));
     }
-
 }
