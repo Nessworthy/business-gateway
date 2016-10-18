@@ -27,11 +27,6 @@ abstract class Base implements Service
     /**
      * @return string
      */
-    abstract protected function getServiceName() : string;
-
-    /**
-     * @return string
-     */
     protected function getServiceVersion() : string
     {
         return 'V' . str_replace('.', '_', $this->getVersion());

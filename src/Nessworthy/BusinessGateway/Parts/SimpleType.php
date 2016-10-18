@@ -20,4 +20,10 @@ interface SimpleType extends Type
      * @return mixed
      */
     public function __get($key);
+
+    /**
+     * Retrieves the data for this type.
+     * @return mixed
+     */
+    public function getValue();
 }

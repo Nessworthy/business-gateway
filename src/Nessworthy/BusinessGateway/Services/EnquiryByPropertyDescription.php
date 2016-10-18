@@ -11,7 +11,7 @@ class EnquiryByPropertyDescription extends BaseWebService
     /**
      * @inheritDoc
      */
-    protected function getServiceName() : string
+    public function getServiceName() : string
     {
         return 'EnquiryByPropertyDescription';
     }
@@ -39,6 +39,4 @@ class EnquiryByPropertyDescription extends BaseWebService
     {
         return 'http://www.oscre.org/ns/eReg-Final/2011/RequestSearchByPropertyDescriptionV2_0';
     }
-
-
 }

@@ -11,7 +11,7 @@ class OfficialCopyWithSummaryPoll extends BasePollRequestWebService
     /**
      * @inheritDoc
      */
-    protected function getServiceName() : string
+    public function getServiceName() : string
     {
         return 'OfficialCopyWithSummary';
     }

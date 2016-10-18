@@ -35,4 +35,11 @@ interface Service
      * @return string
      */
     public function getNamespace() : string;
+
+    /**
+     * Retrieves the system name for this request.
+     * Used for factories, etc.
+     * @return string
+     */
+    public function getServiceName() : string;
 }

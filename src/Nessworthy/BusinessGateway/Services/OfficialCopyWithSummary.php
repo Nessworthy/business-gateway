@@ -11,7 +11,7 @@ class OfficialCopyWithSummary extends BaseWebService
     /**
      * @inheritDoc
      */
-    protected function getServiceName() : string
+    public function getServiceName() : string
     {
         return 'OfficialCopyWithSummary';
     }

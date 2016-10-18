@@ -3,6 +3,7 @@ namespace Nessworthy\BusinessGateway\Parts\Primitive;
 
 use Nessworthy\BusinessGateway\Parts\ComplexType;
 use Nessworthy\BusinessGateway\Parts\InvalidChildException;
+use Nessworthy\BusinessGateway\Parts\SimpleType;
 use Nessworthy\BusinessGateway\Parts\Type;
 use Nessworthy\BusinessGateway\Parts\ValidationRestrictionException;
 use Psr\Log\InvalidArgumentException;
@@ -44,7 +45,7 @@ abstract class BaseComplexType implements ComplexType
      * @throws InvalidArgumentException
      * @throws InvalidChildException
      * @param string $childKey
-     * @return Type|Type[]|null
+     * @return ComplexType|ComplexType[]|SimpleType|SimpleType[]|null
      */
     public function getChild($childKey)
     {

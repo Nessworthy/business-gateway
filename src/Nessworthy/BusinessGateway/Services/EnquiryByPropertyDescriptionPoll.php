@@ -11,7 +11,7 @@ class EnquiryByPropertyDescriptionPoll extends BasePollRequestWebService
     /**
      * @inheritDoc
      */
-    protected function getServiceName() : string
+    public function getServiceName() : string
     {
         return 'EnquiryByPropertyDescription';
     }

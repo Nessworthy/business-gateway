@@ -1,6 +1,8 @@
 <?php declare(strict_types = 1);
 namespace Nessworthy\BusinessGateway;
 
+use Nessworthy\BusinessGateway\Responders\ResponderFactory;
+use Nessworthy\BusinessGateway\Responders\Soap\SoapResponse;
 use Nessworthy\BusinessGateway\System\Cert;
 use Nessworthy\BusinessGateway\System\Credentials;
 use Nessworthy\BusinessGateway\System\EncryptedCert;
@@ -97,12 +99,19 @@ class Client extends \SoapClient
 
     public function sendRequest($body)
     {
-        return $this->__soapCall(
+        $result = $this->__soapCall(
             $this->service->getRequestName(),
             [['arg0' => $body]],
             null,
             $this->buildHeaders()
         );
+        return $result;
+        $initialResponse = new SoapResponse($result);
+        $factory = new ResponderFactory();
+
+        $response = $factory->create($this->service->getServiceName(), $initialResponse);
+
+        return $response;
     }
 
     public function __doRequest($request, $location, $action, $version, $one_way = 0)

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 namespace Nessworthy\BusinessGateway\Builders;
 
 use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1CustomerReference;
@@ -15,7 +15,7 @@ use Nessworthy\BusinessGateway\Parts\Content\Q1Text;
 use Nessworthy\BusinessGateway\Parts\Content\Q2Text;
 use Nessworthy\BusinessGateway\Parts\Content\Q3Text;
 use Nessworthy\BusinessGateway\Parts\Content\ReferenceText;
-use Nessworthy\BusinessGateway\Parts\Documents\RequestOCWithSummaryV2_0;
+use Nessworthy\BusinessGateway\Parts\Documents\RequestOCWithSummary;
 use Nessworthy\BusinessGateway\System\Builder;
 
 class OfficialCopyWithSummary implements Builder
@@ -37,27 +37,33 @@ class OfficialCopyWithSummary implements Builder
     private $continueIfActualFeeExceedsExpectedFee;
     private $includeTitlePlan;
 
-    public function setContinueIfTitleIsClosedAndContinued(bool $indicator) {
+    public function setContinueIfTitleIsClosedAndContinued(bool $indicator)
+    {
         $this->continueIfTitleIsClosedAndContinued = new Indicator($indicator);
     }
 
-    public function setNotifyIfPendingFirstRegistration(bool $indicator) {
+    public function setNotifyIfPendingFirstRegistration(bool $indicator)
+    {
         $this->notifyIfPendingFirstRegistration = new Indicator($indicator);
     }
 
-    public function setNotifyIfPendingApplication(bool $indicator) {
+    public function setNotifyIfPendingApplication(bool $indicator)
+    {
         $this->notifyIfPendingApplication = new Indicator($indicator);
     }
 
-    public function setSendBackDated(bool $indicator) {
+    public function setSendBackDated(bool $indicator)
+    {
         $this->sendBackDated = new Indicator($indicator);
     }
 
-    public function setContinueIfActualFeeExceedsExpectedFee(bool $indicator) {
+    public function setContinueIfActualFeeExceedsExpectedFee(bool $indicator)
+    {
         $this->continueIfActualFeeExceedsExpectedFee = new Indicator($indicator);
     }
 
-    public function setIncludeTitlePlan(bool $indicator) {
+    public function setIncludeTitlePlan(bool $indicator)
+    {
         $this->includeTitlePlan = new Indicator($indicator);
     }
 
@@ -66,19 +72,23 @@ class OfficialCopyWithSummary implements Builder
         $this->messageId = new Q1Text($messageId);
     }
 
-    public function setTitleNumber(string $titleNumber) {
+    public function setTitleNumber(string $titleNumber)
+    {
         $this->titleNumber = new Q2Text($titleNumber);
     }
 
-    public function setGrossPriceAmount(float $amount) {
+    public function setGrossPriceAmount(float $amount)
+    {
         $this->grossPriceAmount = new Amount($amount);
     }
 
-    public function setNetPriceAmount(float $amount) {
+    public function setNetPriceAmount(float $amount)
+    {
         $this->netPriceAmount = new Amount($amount);
     }
 
-    public function setVATAmount(float $vatAmount) {
+    public function setVATAmount(float $vatAmount)
+    {
         $this->vatAmount = new Amount($vatAmount);
     }
 
@@ -93,10 +103,10 @@ class OfficialCopyWithSummary implements Builder
     {
         $externalReference = new Q1ExternalReference(new ReferenceText($reference));
 
-        if($allocatedBy) {
+        if ($allocatedBy) {
             $externalReference->setAllocatedBy(new Q3Text($allocatedBy));
         }
-        if($description) {
+        if ($description) {
             $externalReference->setDescription(new Q3Text($description));
         }
 
@@ -113,10 +123,10 @@ class OfficialCopyWithSummary implements Builder
     {
         $reference = new Q1CustomerReference(new ReferenceText($reference));
 
-        if(!is_null($allocatedBy)) {
+        if (!is_null($allocatedBy)) {
             $reference->setAllocatedBy(new Q3Text($allocatedBy));
         }
-        if(!is_null($description)) {
+        if (!is_null($description)) {
             $reference->setDescription(new Q3Text($description));
         }
 
@@ -133,15 +143,15 @@ class OfficialCopyWithSummary implements Builder
         $subjectProperty = new Q1SubjectProperty($this->titleNumber);
         $expectedPrice = new Q1ExpectedPrice();
 
-        if($this->grossPriceAmount) {
+        if ($this->grossPriceAmount) {
             $expectedPrice->setGrossPriceAmount($this->grossPriceAmount);
         }
 
-        if($this->netPriceAmount) {
+        if ($this->netPriceAmount) {
             $expectedPrice->setNetPriceAmount($this->netPriceAmount);
         }
 
-        if($this->vatAmount) {
+        if ($this->vatAmount) {
             $expectedPrice->setVATAmount($this->vatAmount);
         }
 
@@ -162,10 +172,9 @@ class OfficialCopyWithSummary implements Builder
             $titleKnownOfficialCopy
         );
 
-        return new RequestOCWithSummaryV2_0(
+        return new RequestOCWithSummary(
             $identifier,
             $product
         );
     }
-
 }
