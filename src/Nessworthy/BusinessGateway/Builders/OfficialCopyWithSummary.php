@@ -37,36 +37,66 @@ class OfficialCopyWithSummary implements Builder
     private $continueIfActualFeeExceedsExpectedFee;
     private $includeTitlePlan;
 
+    /**
+     * Indicate whether to continue with the new Title number without warning.
+     * @param bool $indicator
+     */
     public function setContinueIfTitleIsClosedAndContinued(bool $indicator)
     {
         $this->continueIfTitleIsClosedAndContinued = new Indicator($indicator);
     }
 
+    /**
+     * Indicate whether to continue where there is a pending new title application.
+     * @param bool $indicator
+     */
     public function setNotifyIfPendingFirstRegistration(bool $indicator)
     {
         $this->notifyIfPendingFirstRegistration = new Indicator($indicator);
     }
 
+    /**
+     * Indicate whether to continue where there is a pending application.
+     * @param bool $indicator
+     */
     public function setNotifyIfPendingApplication(bool $indicator)
     {
         $this->notifyIfPendingApplication = new Indicator($indicator);
     }
 
+    /**
+     * Indicate whether to issue back dated official copies.
+     * @param bool $indicator
+     */
     public function setSendBackDated(bool $indicator)
     {
         $this->sendBackDated = new Indicator($indicator);
     }
 
+    /**
+     * Indicate whether to continue if the fee calculated by the business gateway
+     * is more than the fee expected to be paid by the customer.
+     * @param bool $indicator
+     */
     public function setContinueIfActualFeeExceedsExpectedFee(bool $indicator)
     {
         $this->continueIfActualFeeExceedsExpectedFee = new Indicator($indicator);
     }
 
+    /**
+     * Indicate whether the response should include an electronic title plan for
+     * the property given.
+     * @param bool $indicator
+     */
     public function setIncludeTitlePlan(bool $indicator)
     {
         $this->includeTitlePlan = new Indicator($indicator);
     }
 
+    /**
+     * Set the unique ID for this request.
+     * @param string $messageId
+     */
     public function setMessageId(string $messageId)
     {
         $this->messageId = new Q1Text($messageId);
