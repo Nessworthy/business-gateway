@@ -1,7 +1,7 @@
 {
   "name": "isg/business-gateway",
   "description": "A PHP SDK to work with UK Gov's land registry SOAP-based API.",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "proprietary",
   "version": "0.0.1",
   "authors": [
@@ -21,8 +21,6 @@
     }
   },
   "require-dev": {
-    "monolog/monolog": "^1.21",
-    "wsdl2phpgenerator/wsdl2phpgenerator": "^3.3",
     "phpunit/phpunit": "^5.5",
     "phpunit/php-code-coverage": "^4.0"
   },
