@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Tests\Parts\Documents;
+namespace Isg\BusinessGateway\Tests\Parts\Documents;
 
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\Q1Identifier;
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1Product;
-use Nessworthy\BusinessGateway\Parts\Documents\RequestSearchByPropertyDescriptionV2_0;
+use Isg\BusinessGateway\Parts\BusinessEntities\Q1Identifier;
+use Isg\BusinessGateway\Parts\BusinessEntities\RequestSearchByPropertyDescriptionV2_0\Q1Product;
+use Isg\BusinessGateway\Parts\Documents\RequestSearchByPropertyDescriptionV2_0;
 
 class RequestSearchByPropertyDescriptionV2_0Test extends \PHPUnit_Framework_TestCase
 {

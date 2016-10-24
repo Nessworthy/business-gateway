@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Tests\Parts\Primitive;
+namespace Isg\BusinessGateway\Tests\Parts\Primitive;
 
 
-use Nessworthy\BusinessGateway\Parts\Primitive\BaseSimpleType;
+use Isg\BusinessGateway\Parts\Primitive\BaseSimpleType;
 
 class BaseSimpleTypeTest extends \PHPUnit_Framework_TestCase
 {

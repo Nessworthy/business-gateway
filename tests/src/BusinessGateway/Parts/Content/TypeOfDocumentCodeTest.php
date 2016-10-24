@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Tests\Parts\Content;
+namespace Isg\BusinessGateway\Tests\Parts\Content;
 
-use Nessworthy\BusinessGateway\Parts\Content\TypeOfDocumentCode;
-use Nessworthy\BusinessGateway\Parts\ValidationRestrictionException;
+use Isg\BusinessGateway\Parts\Content\TypeOfDocumentCode;
+use Isg\BusinessGateway\Parts\ValidationRestrictionException;
 
 class TypeOfDocumentCodeTest extends \PHPUnit_Framework_TestCase
 {

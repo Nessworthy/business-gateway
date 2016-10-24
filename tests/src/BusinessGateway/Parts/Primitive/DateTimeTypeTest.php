@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Tests\Parts\Primitive;
+namespace Isg\BusinessGateway\Tests\Parts\Primitive;
 
-use Nessworthy\BusinessGateway\Parts\Primitive\DateTimeType;
+use Isg\BusinessGateway\Parts\Primitive\DateTimeType;
 
 class DateTimeTypeTest extends \PHPUnit_Framework_TestCase
 {

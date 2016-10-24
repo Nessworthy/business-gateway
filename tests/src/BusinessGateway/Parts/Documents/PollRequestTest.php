@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Tests\Parts\Documents;
+namespace Isg\BusinessGateway\Tests\Parts\Documents;
 
-use Nessworthy\BusinessGateway\Parts\BusinessEntities\PollRequest\Q1Identifier;
-use Nessworthy\BusinessGateway\Parts\Documents\PollRequest;
+use Isg\BusinessGateway\Parts\BusinessEntities\PollRequest\Q1Identifier;
+use Isg\BusinessGateway\Parts\Documents\PollRequest;
 
 class PollRequestTest extends \PHPUnit_Framework_TestCase
 {

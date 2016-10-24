@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Tests\Parts\Primitive;
+namespace Isg\BusinessGateway\Tests\Parts\Primitive;
 
-use Nessworthy\BusinessGateway\Services\EnquiryByPropertyDescriptionPoll;
+use Isg\BusinessGateway\Services\EnquiryByPropertyDescriptionPoll;
 
 class EnquiryByPropertyDescriptionPollTest extends \PHPUnit_Framework_TestCase
 {

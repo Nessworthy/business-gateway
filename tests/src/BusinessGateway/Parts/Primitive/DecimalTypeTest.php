@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
-namespace Nessworthy\BusinessGateway\Tests\Parts\Primitive;
+namespace Isg\BusinessGateway\Tests\Parts\Primitive;
 
-use Nessworthy\BusinessGateway\Parts\Primitive\DecimalType;
+use Isg\BusinessGateway\Parts\Primitive\DecimalType;
 
 class DecimalTypeTest extends \PHPUnit_Framework_TestCase
 {
