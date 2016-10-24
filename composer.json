@@ -1,5 +1,5 @@
 {
-  "name": "Nessworthy/business-gateway",
+  "name": "nessworthy/business-gateway",
   "description": "A PHP SDK to work with UK Gov's land registry SOAP-based API.",
   "minimum-stability": "dev",
   "license": "proprietary",
